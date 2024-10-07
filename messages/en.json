@@ -7,7 +7,7 @@
     "team": "Our Team",
     "news": "News",
     "contact": "Contact Us",
-    "vdmk-issuance": "VDMK Issuance",
+    "vdmk-issuance": "ABS Issuance",
     "investor-login": "Investor Login"
   },
   "Footer": {
@@ -46,7 +46,7 @@
     "base-description-one": "The OMG Capital Team is composed of highly experienced investment banking professionals with a diverse background in finance, economics, and strategic consulting. With over 20 years of combined experience in local and international markets, the team brings a wealth of expertise in corporate finance, mergers and acquisitions, debt restructuring, and capital raising. Each member is dedicated to delivering exceptional value through a client-centric approach, leveraging deep industry knowledge and strategic insight to provide customized financial solutions that support sustainable growth and long-term success for their clients.",
     "base-description-two": "Their collaborative and dynamic team environment fosters innovative thinking and meticulous execution, ensuring that clients receive the highest standard of service in every engagement. The OMG Capital Team is committed to building strong, lasting relationships with their clients, guiding them through complex financial transactions and strategic decisions with integrity, professionalism, and a focus on achieving optimal outcomes.",
     "person-name-one": "Onur AYDOĞAN",
-    "person-description-one": "Managing Partner and CIO of OMG Capital Advisors, Onur Aydoğan has held senior leadership positions within Wellington Management, Merrill Lynch and RBS. Only in the last 5 years, he has originated and executed $USD 500mln structured financial deals for a variety of different industries and financial institutions in London and Istanbul. He has led deals with DFIs that target SMEs around responsible lending in excess of EUR 150mln EUR for Turkey. He was responsible for managing EM fixed income portfolios with AUM over USD 1bln across different asset classes in Boston and New York.",
+    "person-description-one": "Onur Aydoğan is the Managing Partner and Chief Investment Officer of OMG Capital Advisors. He has held senior leadership roles at renowned institutions, including Wellington Management, Merrill Lynch, and RBS in both Boston and London. Onur has extensive experience in originating and executing structured lending deals across various industries and financial institutions in emerging markets. He has led transactions with Development Finance Institutions (DFIs), focusing on responsible lending practices for SMEs in Turkey. Additionally, he managed Emerging Market fixed income portfolios exceeding USD 1 billion in assets under management (AUM) across multiple asset classes while based in Boston and New York. Onur holds an MBA and a BSc in Mechanical Engineering from the University of Massachusetts.",
     "person-name-two": "Umut AYDOĞAN",
     "person-description-two": "Assistant General Manager of OMG Capital Advisors, Umut Aydoğan started his career in Yapı Kredi Bank in 2003, thereafter worked for İşbank in Capital Markets Division between 2006 and 2013. He went on to work as an Operation Executive between 2013 – 2014 in Halk Pension Fund Management where he established and managed internal control coupled with fund risk management systems. Umut Aydoğan continued his career in Ünlü&Co as COO Ünlü Portfolio Management between 2014 and 2020,where he also served the company as a member of the Board. Umut's professional specialties along with his extensive experience in capital markets operations in Turkey, include execution and administration of ABS issuance operations and structured financial products.",
     "person-name-three": "Murat GÜLKAN",
@@ -117,8 +117,8 @@
     "user-agrement": "user agrement",
     "login-button": "LOGIN",
     "redirect": "Redirecting...",
-    "forgot-username": "Forgot your username ?",
-    "forgot-password": "Forgot your password ?",
+    "forgot-username": "Forgot username?",
+    "forgot-password": "Forgot password?",
     "marker": "© 2011 - 2024 OMG CAPITAL ADVISORS GROUP",
     "home": "HOME",
     "register": "REGISTER",
