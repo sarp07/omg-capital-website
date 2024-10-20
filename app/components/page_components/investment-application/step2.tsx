@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Step2Props {
   phoneNumber: string;
@@ -10,10 +10,28 @@ interface Step2Props {
   setCity: React.Dispatch<React.SetStateAction<string>>;
   province: string;
   setProvince: React.Dispatch<React.SetStateAction<string>>;
+  isUserLoggedIn: boolean; // Kullanıcı giriş yapmış mı?
 }
 
-const Step2: React.FC<Step2Props> = ({ phoneNumber, setPhoneNumber, email, setEmail, city, setCity, province, setProvince }) => {
+const Step2: React.FC<Step2Props> = ({
+  phoneNumber,
+  setPhoneNumber,
+  email,
+  setEmail,
+  city,
+  setCity,
+  province,
+  setProvince,
+  isUserLoggedIn,
+}) => {
   const t = useTranslations("Investment-Applications-Page");
+
+  // Kullanıcı giriş yapmışsa email'i doldur
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      setEmail(email);
+    }
+  }, [isUserLoggedIn, email, setEmail]);
 
   return (
     <>
@@ -29,6 +47,8 @@ const Step2: React.FC<Step2Props> = ({ phoneNumber, setPhoneNumber, email, setEm
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
       </div>
+      
+      {/* Email Field */}
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("email")}</h5>
         <input
@@ -36,8 +56,11 @@ const Step2: React.FC<Step2Props> = ({ phoneNumber, setPhoneNumber, email, setEm
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          disabled={isUserLoggedIn} // Kullanıcı giriş yaptıysa alanı pasif yap
         />
       </div>
+      
+      {/* City Field */}
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("city")}</h5>
         <input
@@ -47,6 +70,8 @@ const Step2: React.FC<Step2Props> = ({ phoneNumber, setPhoneNumber, email, setEm
           onChange={(e) => setCity(e.target.value)}
         />
       </div>
+
+      {/* Province Field */}
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("province")}</h5>
         <input

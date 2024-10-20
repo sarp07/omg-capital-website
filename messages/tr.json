@@ -2,13 +2,16 @@
   "Navbar": {
     "home": "Anasayfa",
     "about-us": "Hakkımızda",
-    "who-we-are": "Biz Kimiz",
+    "who-we-are": "Hakkımızda",
     "our-firm": "Firmamız",
     "team": "Ekibimiz",
     "news": "Haberler",
     "contact": "Bize Ulaşın",
     "vdmk-issuance": "VDMK Hisseler",
-    "investor-login": "Yatıtımcı Giriş"
+    "investor-login": "Yatıtımcı Giriş",
+    "whatis-vdmk-issuance": "VDMK Hisseleri Nedir?",
+    "what-we-do": "Ne Yapıyoruz",
+    "logout": "Çıkış Yap"
   },
   "Footer": {
     "navigation": "Navigasyon",
@@ -46,7 +49,7 @@
     "base-description-one": "OMG Capital Ekibi, finans, ekonomi ve stratejik danışmanlık alanlarında çeşitli geçmişlere sahip, son derece deneyimli yatırım bankacılığı profesyonellerinden oluşmaktadır. Yerel ve uluslararası pazarlarda 20 yılı aşkın birleşik deneyime sahip olan ekip, kurumsal finans, birleşme ve devralmalar, borç yapılandırma ve sermaye artırımı konularında geniş bir uzmanlık sunmaktadır. Her üye, müşteri odaklı bir yaklaşımla olağanüstü değer sunmaya kendini adamış olup, derin sektör bilgisi ve stratejik içgörüleri kullanarak müşterilerinin sürdürülebilir büyüme ve uzun vadeli başarılarını destekleyen özelleştirilmiş finansal çözümler sağlamaktadır.",
     "base-description-two": "Ekip içindeki işbirlikçi ve dinamik çalışma ortamı, yenilikçi düşünceyi ve titiz uygulamayı teşvik ederek, müşterilerin her etkileşimde en yüksek hizmet standartlarını almalarını sağlar. OMG Capital Ekibi, müşterileriyle güçlü ve kalıcı ilişkiler kurmaya kendini adamış olup, onları karmaşık finansal işlemler ve stratejik kararlar konusunda bütünlük, profesyonellik ve en iyi sonuçlara ulaşma odaklı rehberlik eder.",
     "person-name-one": "Onur AYDOĞAN",
-    "person-description-one": "Onur Aydoğan, OMG Capital Advisors’ın Yönetici Ortağı ve Baş Yatırım Sorumlusudur. Boston ve Londra’da, Wellington Management, Merrill Lynch ve RBS gibi önde gelen kurumlarda üst düzey liderlik pozisyonlarında görev almıştır. Gelişmekte olan piyasalarda çeşitli sektörler ve finansal kuruluşlar için yapılandırılmış kredi anlaşmalarının yaratılması ve uygulanması konusunda geniş bir deneyime sahiptir. Türkiye’deki KOBİ’ler için sorumlu kredi uygulamalarına odaklanarak Kalkınma Finans Kuruluşları (DFI) ile işlemler yürütmüştür. Ayrıca, Boston ve New York’ta, birden fazla varlık sınıfında 1 milyar USD’yi aşan Varlık Yönetimi (AUM) olan Gelişen Piyasalar sabit getirili portföylerini yönetmiştir. Onur, Massachusetts Üniversitesi’nden İşletme Yüksek Lisansı (MBA) ve Makine Mühendisliği Lisans derecesine sahiptir.",
+    "person-description-one": "OMG Capital Advisors'ın Yönetici Ortağı ve CIO'su olan Onur Aydoğan, Wellington Management, Merrill Lynch ve RBS'de üst düzey liderlik pozisyonlarında bulunmuştur. Sadece son 5 yılda, Londra ve İstanbul'da çeşitli endüstriler ve finansal kurumlar için 500 milyon USD'yi aşan yapılandırılmış finansal anlaşmalar gerçekleştirmiştir. Türkiye için 150 milyon EUR'yu aşan sorumlu kredilendirme odaklı KOBİ hedefli DFI anlaşmalarına liderlik etmiştir. Boston ve New York'ta 1 milyar USD'yi aşan çeşitli varlık sınıflarında EM sabit gelir portföylerini yönetmiştir.",
     "person-name-two": "Umut AYDOĞAN",
     "person-description-two": "OMG Capital Advisors'ın Genel Müdür Yardımcısı olan Umut Aydoğan, kariyerine 2003 yılında Yapı Kredi Bankası'nda başlamış, 2006-2013 yılları arasında İş Bankası'nın Sermaye Piyasaları Departmanında çalışmıştır. 2013-2014 yılları arasında Halk Emeklilik'te Operasyon Yöneticisi olarak çalışarak iç kontrol ve fon risk yönetimi sistemlerini kurup yönetmiştir. 2014-2020 yılları arasında Ünlü&Co'da COO olarak görev yapmış, aynı zamanda Yönetim Kurulu üyesi olarak da hizmet vermiştir. Umut Aydoğan'ın Türkiye'deki sermaye piyasası operasyonlarındaki geniş deneyimi, ABS ihraç operasyonlarının yürütülmesi ve yapılandırılmış finansal ürünlerin yönetimi konusunda uzmanlaşmasını sağlamıştır.",
     "person-name-three": "Murat GÜLKAN",
@@ -71,7 +74,11 @@
   "News-Page": {
     "header": "HABERLER",
     "go-button": "Kaynağa Git",
-    "loading": "Yükleniyor..."
+    "loading": "Yükleniyor...",
+    "latest-news": "Son Dakika",
+    "press-release": "Basın Bülteni",
+    "not-found-news": "Haberler Bulunamadı",
+    "not-found-release": "Basın Bülteni Bulunamadı"
   },
   "Contact-Us-Page": {
     "contact-us": "İLETİŞİM",
@@ -89,12 +96,13 @@
   },
   "Investment-Applications-Page": {
     "step": "Adım",
-    "fill-informations": "Bilgileri doldurun.",
+    "fill-informations": "Lütfen aşağıdaki bilgileri doldurunuz:",
     "name": "Ad",
     "surname": "Soyad",
     "birth-date": "Doğum Tarihi",
     "gender": "Cinsiyet",
     "phone-number": "Telefon Numarası",
+    "identity-number": "Kimlik Numarası",
     "email": "E-posta",
     "city": "Şehir",
     "province": "İlçe",
@@ -107,7 +115,14 @@
     "male": "Erkek",
     "female": "Kadın",
     "error-message": "Lütfen eksik bilgileri tamamlayınız!",
-    "required": "Gerekli"
+    "required": "Gerekli",
+    "mkk-explanation-title": "MKK Sicil No ve Hesap No Bilgisi",
+    "mkk-explanation": "MKK Sicil No ve Hesap No bilgilerinizi öğrenmek için",
+    "click-here": "buraya tıklayın",
+    "for-more-info": "daha fazla bilgi için.",
+    "mkk-registration-number": "MKK Sicil Numarası",
+    "account-number": "Hesap Numarası",
+    "dont-know-mkk-account": "MKK Sicil No ve Hesap No bilmiyorum, bu şekilde devam etmek istiyorum."
   },
   "LoginPage": {
     "information": "Lütfen hesabınıza giriş yapın.",
@@ -144,5 +159,40 @@
     "hide-password": "Şifreyi Gizle",
     "redirect": "Yönlendiriliyorsunuz...",
     "error-message": "Lütfen eksik bilgileri tamamlayınız!"
+  },
+  "VDMK-Page": {
+    "whatIsAbsTitle": "Varlığa Dayalı Menkul Kıymet (VDMK) Nedir?",
+    "whatIsAbsText": "Varlığa dayalı menkul kıymetler (VDMK), gelir ya da nakit akışı sağlayan bir varlık havuzuyla teminat altına alınan bir finansal yatırım türüdür. VDMK'ler, tahviller gibi düzenli bir faiz getirisi sundukları için gelir odaklı yatırımcılara hitap eder. Yatırımcılar için VDMK satın almak, bir gelir akışı elde etme fırsatı sunar. VDMK, yatırımcılara başka hiçbir yatırımda bulunmayan geniş bir gelir getiren varlık yelpazesine katılma imkanı sağlar.",
+
+    "howAbsWorksTitle": "VDMK Nasıl Çalışır?",
+    "howAbsWorksText": "Varlığa dayalı menkul kıymetler (VDMK), menkul kıymetleştirme adı verilen bir süreçle oluşturulur. Bu süreç, çeşitli gelir getiren varlıkların (örneğin krediler, kiralar veya alacaklar) tek bir finansal araçta bir araya getirilmesini ve ardından bu aracın yatırımcılara satılmasını içerir. Bu sürecin görsel temsili, tabloda gösterildiği gibi VDMK ile ilgili kilit varlıkları ve işlem akışını vurgular.",
+
+    "list": {
+      "investorsTitle": "Yatırımcılar:",
+      "investors": "Yatırımcılar, VDMK olarak ihraç edilen varlığa dayalı menkul kıymetleri (VDMK) satın alır. Bu menkul kıymetler için ihraç bedelini öderler.",
+
+      "fundTitle": "Varlık Finansmanı Fonu:",
+      "fund": "Bu fon, VDMK yapısında aracı olarak görev yapar. Kaynak Kuruluş'tan (Originator) varlıkları satın alır ve bu varlıklar karşılığında yatırımcılara VDMK ihraç eder.",
+
+      "originatorTitle": "Kaynak Kuruluş:",
+      "originator": "Kaynak Kuruluş, varlıkları (örneğin krediler veya alacaklar) Varlık Finansmanı Fonu'na satar. Karşılığında, fonun transfer ettiği varlıkların bedelini alır.",
+
+      "debtorTitle": "Borçlu:",
+      "debtor": "Borçlu, altta yatan varlıklar (krediler veya alacaklar) için ödeme yapmaktan sorumlu olan taraftır. Bu ödemelerden elde edilen nakit akışları Varlık Finansmanı Fonu'na aktarılır.",
+
+      "paymentTitle": "Yatırımcılara Ödeme:",
+      "payment": "Zaman içinde fon, altta yatan varlıklardan elde edilen nakit akışlarını kullanarak yatırımcılara, hem anapara hem de faiz ödemelerini yapar."
+    }
+  },
+  "Abs-Page": {
+    "welcome": "Hoş geldiniz",
+    "active-issuances": "Aktif İhraçlar",
+    "inactive-issuances": "Pasif İhraçlar",
+    "loading": "Yükleniyor...",
+    "not-found-issuance": "Aktif ihraç bulunamadı.",
+    "not-found-inactive": "Pasif ihraç bulunamadı.",
+    "purchase": "Satın Al",
+    "redirect": "Yönlendiriliyor...",
+    "details": "Detaylar"
   }
 }

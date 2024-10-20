@@ -9,6 +9,7 @@ import {
 } from "react";
 import axios from "axios";
 import CryptoJS from "crypto-js"; // Şifreleme için gerekli kütüphane
+import { jwtDecode, JwtPayload } from "jwt-decode"; // JWT decode kütüphanesi
 
 // Şifreleme için bir gizli anahtar (secret key)
 const SECRET_KEY = process.env.NEXT_PUBLIC_SECRET_KEY || "default_secret_key";
@@ -25,7 +26,9 @@ interface User {
 
 interface UserContextType {
   user: User | null;
-  login: (username: string, password: string) => Promise<void>;
+  activeSession: boolean;
+  isLoading: boolean;
+  login: (username: string, password: string) => Promise<{ success: boolean }>;
   register: (
     name: string,
     surname: string,
@@ -63,8 +66,22 @@ const decryptToken = (encryptedToken: string): string | null => {
   }
 };
 
+// Token süresinin dolup dolmadığını kontrol eden fonksiyon
+const isTokenExpired = (token: string): boolean => {
+  try {
+    const decoded: JwtPayload = jwtDecode<JwtPayload>(token); // JWT token decode ediliyor
+    const currentTime = Math.floor(Date.now() / 1000); // Şu anki zaman
+    return decoded.exp ? decoded.exp < currentTime : true; // Token süresi dolmuş mu kontrol edilir
+  } catch (error) {
+    console.error("Error decoding token:", error);
+    return true; // Hata olursa, token süresi dolmuş varsayılır
+  }
+};
+
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [activeSession, setActiveSession] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Register function
   const register = async (
@@ -77,7 +94,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   ) => {
     try {
       const response = await axios.post(
-        "http://localhost:5005/api/auth/register",
+        `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/register`,
         {
           name,
           surname,
@@ -89,30 +106,21 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       );
 
       if (response.status === 201) {
-        // Başarılı kayıt
         console.log("Kayıt başarıyla tamamlandı:", response.data.message);
       } else {
-        // Beklenmedik bir durum
         console.error("Kayıt sırasında bir sorun oluştu:", response.data);
       }
     } catch (error: unknown) {
-      // error'ın tipini 'unknown' olarak belirtiyoruz
       if (axios.isAxiosError(error)) {
-        // Axios hata yanıtını işliyoruz
         if (error.response) {
           console.error("Kayıt başarısız:", error.response.data.message);
-        //   alert(`Registration failed: ${error.response.data.message}`);
         } else {
           console.error("Axios error occurred:", error.message);
-        //   alert("An error occurred with Axios");
         }
       } else if (error instanceof Error) {
-        // Diğer hataları işliyoruz
         console.error("Kayıt sırasında bir hata oluştu:", error.message);
-        // alert("An unknown error occurred during registration");
       } else {
         console.error("Bilinmeyen bir hata oluştu.");
-        // alert("An unknown error occurred.");
       }
     }
   };
@@ -131,56 +139,46 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     monthlyIncome: string
   ) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5005/api/investors",
-        {
-          name,
-          surname,
-          email,
-          gender,
-          birthDate,
-          phoneNumber,
-          city,
-          province,
-          profession,
-          monthlyIncome
-        }
-      );
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/investors`, {
+        name,
+        surname,
+        email,
+        gender,
+        birthDate,
+        phoneNumber,
+        city,
+        province,
+        profession,
+        monthlyIncome,
+      });
 
       if (response.status === 201) {
-        // Başarılı kayıt
         console.log("Kayıt başarıyla tamamlandı:", response.data.message);
       } else {
-        // Beklenmedik bir durum
         console.error("Kayıt sırasında bir sorun oluştu:", response.data);
       }
     } catch (error: unknown) {
-      // error'ın tipini 'unknown' olarak belirtiyoruz
       if (axios.isAxiosError(error)) {
-        // Axios hata yanıtını işliyoruz
         if (error.response) {
           console.error("Kayıt başarısız:", error.response.data.message);
-        //   alert(`Registration failed: ${error.response.data.message}`);
         } else {
           console.error("Axios error occurred:", error.message);
-        //   alert("An error occurred with Axios");
         }
       } else if (error instanceof Error) {
-        // Diğer hataları işliyoruz
         console.error("Kayıt sırasında bir hata oluştu:", error.message);
-        // alert("An unknown error occurred during registration");
       } else {
         console.error("Bilinmeyen bir hata oluştu.");
-        // alert("An unknown error occurred.");
       }
     }
   };
 
-  // Login function
-  const login = async (username: string, password: string) => {
+  const login = async (
+    username: string,
+    password: string
+  ): Promise<{ success: boolean }> => {
     try {
       const response = await axios.post(
-        "http://localhost:5005/api/users/login",
+        `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/login`,
         {
           username,
           password,
@@ -188,13 +186,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       );
 
       const { token } = response.data;
-      // Token'ı şifreleyip localStorage'a kaydet
       const encryptedToken = encryptToken(token);
       localStorage.setItem("encrypted_token", encryptedToken);
 
       // Profil bilgilerini al
       const profileResponse = await axios.get(
-        "http://localhost:5005/api/users/profile",
+       `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -203,31 +200,50 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       );
 
       setUser(profileResponse.data);
-    } catch (error) {
-      if (error instanceof Error) {
+      setActiveSession(true); // Oturum aktif olarak işaretleniyor
+      return { success: true };
+    } catch (error: any) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error occurred:");
+        console.error("Status Code:", error.response?.status);
+        console.error("Response Data:", error.response?.data);
+        console.error("Headers:", error.response?.headers);
+      } else if (error instanceof Error) {
         console.error("Login failed:", error.message);
       } else {
         console.error("Login failed: An unknown error occurred.");
       }
+
+      return { success: false };
     }
   };
 
   // Logout function
   const logout = () => {
-    localStorage.removeItem("encrypted_token");
-    setUser(null);
+    const encryptedToken = localStorage.getItem("encrypted_token");
+    if (encryptedToken) {
+      const token = decryptToken(encryptedToken);
+      if (token) {
+        localStorage.removeItem("encrypted_token");
+        setUser(null);
+        setActiveSession(false); // Oturum pasif olarak işaretleniyor
+      } else {
+        console.error("Failed to decrypt token");
+      }
+    } else {
+      console.error("No token found in localStorage");
+    }
   };
 
-  // Token ile kullanıcı oturumunu otomatik olarak geri yükle
   useEffect(() => {
     const loadUser = async () => {
       const encryptedToken = localStorage.getItem("encrypted_token");
       if (encryptedToken) {
         const token = decryptToken(encryptedToken);
-        if (token) {
+        if (token && !isTokenExpired(token)) {
           try {
             const response = await axios.get(
-              "http://localhost:5005/api/users/profile",
+              `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/profile`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -235,26 +251,26 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
               }
             );
             setUser(response.data);
+            setActiveSession(true);
           } catch (error) {
-            if (error instanceof Error) {
-              console.error("User session expired:", error.message);
-            } else {
-              console.error("User session expired: An unknown error occurred.");
-            }
+            console.error("Kullanıcı profili yüklenemedi:", error);
             logout();
           }
         } else {
-          console.error("Failed to decrypt token");
+          console.error("Token geçersiz veya süresi dolmuş.");
           logout();
         }
       }
+      setIsLoading(false); // Load işlemi tamamlandığında
     };
 
     loadUser();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, login, register, logout }}>
+    <UserContext.Provider
+      value={{ user, activeSession, isLoading, login, register, logout }}
+    >
       {children}
     </UserContext.Provider>
   );

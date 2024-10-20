@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Step1Props {
   name: string;
@@ -8,18 +8,39 @@ interface Step1Props {
   setSurname: React.Dispatch<React.SetStateAction<string>>;
   birthDate: string;
   setBirthDate: React.Dispatch<React.SetStateAction<string>>;
-  gender: string;
-  setGender: React.Dispatch<React.SetStateAction<string>>;
+  idenfityNumber: string; // Kimlik numarası
+  setIdenfityNumber: React.Dispatch<React.SetStateAction<string>>;
+  isUserLoggedIn: boolean; // Kullanıcı giriş yapmış mı?
 }
 
-const Step1: React.FC<Step1Props> = ({ name, setName, surname, setSurname, birthDate, setBirthDate, gender, setGender }) => {
+const Step1: React.FC<Step1Props> = ({
+  name,
+  setName,
+  surname,
+  setSurname,
+  birthDate,
+  setBirthDate,
+  idenfityNumber,
+  setIdenfityNumber,
+  isUserLoggedIn,
+}) => {
   const t = useTranslations("Investment-Applications-Page");
+
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      // Kullanıcı giriş yaptıysa, bu alanları pasif yap.
+      setName(name);
+      setSurname(surname);
+    }
+  }, [isUserLoggedIn, setName, setSurname, name, surname]);
 
   return (
     <>
       <div className="title-container w-full items-center mt-8">
         <h5 className="text-[17px] text-black">{t("fill-informations")}</h5>
       </div>
+
+      {/* Name Field */}
       <div className="input-container flex items-start gap-0 mt-2 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("name")}</h5>
         <input
@@ -27,8 +48,11 @@ const Step1: React.FC<Step1Props> = ({ name, setName, surname, setSurname, birth
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          disabled={isUserLoggedIn} // Kullanıcı giriş yaptıysa alanı pasif yap
         />
       </div>
+
+      {/* Surname Field */}
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("surname")}</h5>
         <input
@@ -36,8 +60,11 @@ const Step1: React.FC<Step1Props> = ({ name, setName, surname, setSurname, birth
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={surname}
           onChange={(e) => setSurname(e.target.value)}
+          disabled={isUserLoggedIn} // Kullanıcı giriş yaptıysa alanı pasif yap
         />
       </div>
+
+      {/* Birth Date Field */}
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("birth-date")}</h5>
         <input
@@ -47,21 +74,16 @@ const Step1: React.FC<Step1Props> = ({ name, setName, surname, setSurname, birth
           onChange={(e) => setBirthDate(e.target.value)}
         />
       </div>
+
+      {/* Identity Number (Kimlik No) Field */}
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
-        <h5 className="text-[13px] font-medium pl-[2px]">{t("gender")}</h5>
-        <select
-          name="gender"
-          id="gender"
+        <h5 className="text-[13px] font-medium pl-[2px]">{t("identity-number")}</h5>
+        <input
+          type="text"
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-        >
-          <option value="" disabled>
-            {t("select-gender")}
-          </option>
-          <option value="male">{t("male")}</option>
-          <option value="female">{t("female")}</option>
-        </select>
+          value={idenfityNumber}
+          onChange={(e) => setIdenfityNumber(e.target.value)}
+        />
       </div>
     </>
   );

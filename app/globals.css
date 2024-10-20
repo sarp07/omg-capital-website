@@ -59,7 +59,6 @@
    background-size: cover;
 }
 .news-item {
-   background-image: url("./images/news/news_image.jpg");
    background-size: cover;
 }
 .profile-item {
@@ -204,7 +203,8 @@
 }
 
 .mobile-menu.active {
-   height: 400px; /* Bring it down when active */
+   height: 500px;
+   /* Bring it down when active */
 }
 
 .about-image {

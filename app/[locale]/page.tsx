@@ -4,6 +4,7 @@ import LatestNews from "../components/page_components/main/latestnews";
 import Team from "../components/page_components/main/team";
 
 export default function Home() {
+  
   return (
     <main className="">
       <Hero />

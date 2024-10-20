@@ -1,35 +1,55 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Logo from "../../images/logo.png";
 import Image from "next/image";
 import Step1 from "../../components/page_components/investment-application/step1";
 import Step2 from "../../components/page_components/investment-application/step2";
 import Step3 from "../../components/page_components/investment-application/step3";
+import Step4 from "../../components/page_components/investment-application/step4"; // Step4 for MKK and Account No
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useUser } from "@/app/context/UserContext";
 
 const InvestmentApplicationPage = () => {
   const router = useRouter();
   const t = useTranslations("Investment-Applications-Page");
+  const { user, isLoading, activeSession } = useUser(); // Get logged-in user info
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
+
+  useEffect(() => {
+    if (!isLoading && !activeSession) {
+      router.push("/login"); 
+    }
+  }, [isLoading, activeSession, router]);
 
   // Input values for each step
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [gender, setGender] = useState("");
+  const [idenfityNumber, setIdenfityNumber] = useState(""); // Identity Number
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [monthlyIncome, setMonthlyIncome] = useState("");
   const [profession, setProfession] = useState("");
+  const [mkkRegistrationNumber, setMkkRegistrationNumber] = useState(""); // MKK Registration Number
+  const [accountNumber, setAccountNumber] = useState(""); // Account Number
+
+  // Pre-fill user data if logged in
+  useEffect(() => {
+    if (user) {
+      setName(user.name);
+      setSurname(user.surname);
+      setEmail(user.email);
+    }
+  }, [user]);
 
   const handleStep = async () => {
     if (step === 1) {
-      if (!name || !surname || !birthDate || !gender) {
+      if (!name || !surname || !birthDate || !idenfityNumber) {
         alert(t("error-message"));
         return;
       }
@@ -41,9 +61,16 @@ const InvestmentApplicationPage = () => {
         return;
       }
     }
-    
+
     if (step === 3) {
       if (!monthlyIncome || !profession) {
+        alert(t("error-message"));
+        return;
+      }
+    }
+
+    if (step === 4) {
+      if (!mkkRegistrationNumber || !accountNumber) {
         alert(t("error-message"));
         return;
       }
@@ -54,13 +81,15 @@ const InvestmentApplicationPage = () => {
           name,
           surname,
           birthDate,
-          gender,
+          idenfityNumber, // Include identity number in submission
           phoneNumber,
           email,
           city,
           province,
           monthlyIncome,
           profession,
+          mkkRegistrationNumber, // Include MKK Registration number in submission
+          accountNumber, // Include account number in submission
         });
 
         setTimeout(() => {
@@ -80,7 +109,7 @@ const InvestmentApplicationPage = () => {
   return (
     <>
       {loading && (
-        <div className="fixed inset-0 z-[600] flex flex-col justify-center items-center bg-white bg-opacity-80">
+        <div className="fixed inset-0 z-[600] flex flex-col justify-center items-center bg-white bg-opacity-98">
           <div className="relative duration-500 flex justify-center items-center">
             <div className="w-[200px] h-[200px] rounded-full border-t-4 border-b-4 border-logoGray animate-spin-slow"></div>
             <div className="absolute">
@@ -88,7 +117,7 @@ const InvestmentApplicationPage = () => {
             </div>
           </div>
           <div className="flex mt-6 text-logoGray">
-            <p>{t("redirect")}</p>
+            <p>{t("loading")}</p>
           </div>
         </div>
       )}
@@ -105,7 +134,7 @@ const InvestmentApplicationPage = () => {
               <Image src={Logo} alt="omg-logo" className="w-[150px] h-auto" />
               <div className="steps">
                 <h5 className="text-black">
-                  {t("step")} {step}/3
+                  {t("step")} {step}/4
                 </h5>
               </div>
             </div>
@@ -118,8 +147,9 @@ const InvestmentApplicationPage = () => {
                 setSurname={setSurname}
                 birthDate={birthDate}
                 setBirthDate={setBirthDate}
-                gender={gender}
-                setGender={setGender}
+                idenfityNumber={idenfityNumber} // Added identity number
+                setIdenfityNumber={setIdenfityNumber} // Function to update identity number
+                isUserLoggedIn={!!user} // Pass a flag to disable fields if logged in
               />
             )}
             {step === 2 && (
@@ -132,6 +162,7 @@ const InvestmentApplicationPage = () => {
                 setCity={setCity}
                 province={province}
                 setProvince={setProvince}
+                isUserLoggedIn={!!user} // Pass a flag to disable fields if logged in
               />
             )}
             {step === 3 && (
@@ -140,6 +171,14 @@ const InvestmentApplicationPage = () => {
                 setMonthlyIncome={setMonthlyIncome}
                 profession={profession}
                 setProfession={setProfession}
+              />
+            )}
+            {step === 4 && (
+              <Step4
+                mkkRegistrationNumber={mkkRegistrationNumber} // MKK Registration Number step
+                setMkkRegistrationNumber={setMkkRegistrationNumber}
+                accountNumber={accountNumber} // Account Number step
+                setAccountNumber={setAccountNumber}
               />
             )}
           </div>
@@ -155,7 +194,8 @@ const InvestmentApplicationPage = () => {
               >
                 {step === 1 && `${t("next-button")}`}
                 {step === 2 && `${t("next-button")}`}
-                {step === 3 && `${t("submit-button")}`}
+                {step === 3 && `${t("next-button")}`}
+                {step === 4 && `${t("submit-button")}`}
               </button>
             </div>
           </div>

@@ -12,7 +12,7 @@ interface NewsItem {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image_uri: string;
   date: string;
 }
 
@@ -27,7 +27,7 @@ const LatestNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`http://localhost:5005/api/news`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/news`, {
           params: { locale },
         });
 
@@ -88,7 +88,7 @@ const LatestNews = () => {
 
                   <div className="w-full h-[300px]">
                     <Image
-                      src={news.image}
+                      src={news.image_uri}
                       alt={news.title}
                       width={700}
                       height={300}
