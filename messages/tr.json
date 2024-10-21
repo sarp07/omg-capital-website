@@ -8,7 +8,7 @@
     "news": "Haberler",
     "contact": "Bize Ulaşın",
     "vdmk-issuance": "VDMK Hisseler",
-    "investor-login": "Yatıtımcı Giriş",
+    "investor-login": "Yatırımcı Giriş",
     "whatis-vdmk-issuance": "VDMK Hisseleri Nedir?",
     "what-we-do": "Ne Yapıyoruz",
     "logout": "Çıkış Yap"
@@ -132,12 +132,16 @@
     "user-agrement": "kullanıcı sözleşmesi",
     "login-button": "GİRİŞ",
     "redirect": "Yönlendiriliyor...",
-    "forgot-username": "Kullanıcı adınızı mı unuttunuz ?",
-    "forgot-password": "Şifrenizi mi unuttunuz ?",
+    "forgot-username": "Kullanıcı adınızı mı unuttunuz?",
+    "forgot-password": "Şifrenizi mi unuttunuz?",
     "marker": "© 2011 - 2024 OMG CAPITAL ADVISORS GROUP",
     "home": "ANA SAYFA",
     "register": "KAYIT OL",
-    "error-message": "Lütfen eksik bilgileri tamamlayınız!"
+    "error-message": "Lütfen eksik bilgileri tamamlayınız!",
+    "agreement-error": "Kullanıcı sözleşmesini kabul etmeniz gerekiyor.",
+    "login-failed-message": "Giriş başarısız! Kullanıcı adınızı veya şifrenizi kontrol ediniz.",
+    "login-error": "Giriş sırasında bir hata oluştu! Lütfen tekrar deneyiniz.",
+    "continue-without-signup": "Üye olmadan devam et"
   },
   "RegisterPage": {
     "step": "Adım",
@@ -193,6 +197,8 @@
     "not-found-inactive": "Pasif ihraç bulunamadı.",
     "purchase": "Satın Al",
     "redirect": "Yönlendiriliyor...",
-    "details": "Detaylar"
+    "details": "Detaylar",
+    "welcome-guest": "Hoşgeldiniz, Misafir!",
+    "guest-warning": "İhraçları satın almak ve işleme devam etmek için lütfen giriş yapınız."
   }
 }

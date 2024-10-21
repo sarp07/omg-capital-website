@@ -105,6 +105,23 @@
    background: #ffffff;
 }
 
+.guest-login-btn {
+   background-color: #f5f5f5; /* Light gray */
+   color: #000; /* Black text */
+   padding: 10px 20px;
+   font-size: 14px;
+   border-radius: 5px;
+   border: 2px solid #cecece;
+   cursor: pointer;
+   transition: background-color 0.3s, color 0.3s;
+   margin-top: 10px;
+ }
+ 
+ .guest-login-btn:hover {
+   background-color: #000; /* Black background on hover */
+   color: #fff; /* White text on hover */
+ } 
+
 .coolinput input[type="text"].input:focus {
    outline: none;
 }

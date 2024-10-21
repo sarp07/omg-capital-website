@@ -27,6 +27,7 @@ interface User {
 interface UserContextType {
   user: User | null;
   activeSession: boolean;
+  guestActive: boolean;
   isLoading: boolean;
   login: (username: string, password: string) => Promise<{ success: boolean }>;
   register: (
@@ -38,6 +39,7 @@ interface UserContextType {
     password: string
   ) => Promise<void>;
   logout: () => void;
+  loginAsGuest: () => void;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -81,7 +83,22 @@ const isTokenExpired = (token: string): boolean => {
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [activeSession, setActiveSession] = useState(false);
+  const [guestActive, setGuestActive] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const loginAsGuest = () => {
+    const guestUser: User = {
+      id: "guest",
+      name: "Guest",
+      surname: "",
+      email: "",
+      gender: "",
+      username: "guest_user",
+    };
+    localStorage.setItem("guest_user", JSON.stringify(guestUser));
+    setUser(guestUser);
+    setGuestActive(true);
+  };
 
   // Register function
   const register = async (
@@ -139,18 +156,21 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     monthlyIncome: string
   ) => {
     try {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/investors`, {
-        name,
-        surname,
-        email,
-        gender,
-        birthDate,
-        phoneNumber,
-        city,
-        province,
-        profession,
-        monthlyIncome,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/investors`,
+        {
+          name,
+          surname,
+          email,
+          gender,
+          birthDate,
+          phoneNumber,
+          city,
+          province,
+          profession,
+          monthlyIncome,
+        }
+      );
 
       if (response.status === 201) {
         console.log("Kayıt başarıyla tamamlandı:", response.data.message);
@@ -179,10 +199,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/login`,
-        {
-          username,
-          password,
-        }
+        { username, password }
       );
 
       const { token } = response.data;
@@ -191,29 +208,21 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       // Profil bilgilerini al
       const profileResponse = await axios.get(
-       `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/profile`,
+        `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/auth/profile`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Token'ı gönderiyoruz
           },
         }
       );
 
       setUser(profileResponse.data);
-      setActiveSession(true); // Oturum aktif olarak işaretleniyor
+      setActiveSession(true);
+      setGuestActive(false); // Misafir kullanıcı değil
+      localStorage.removeItem("guest_user"); 
       return { success: true };
     } catch (error: any) {
-      if (axios.isAxiosError(error)) {
-        console.error("Axios error occurred:");
-        console.error("Status Code:", error.response?.status);
-        console.error("Response Data:", error.response?.data);
-        console.error("Headers:", error.response?.headers);
-      } else if (error instanceof Error) {
-        console.error("Login failed:", error.message);
-      } else {
-        console.error("Login failed: An unknown error occurred.");
-      }
-
+      console.error("Login failed:", error);
       return { success: false };
     }
   };
@@ -225,8 +234,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       const token = decryptToken(encryptedToken);
       if (token) {
         localStorage.removeItem("encrypted_token");
+        localStorage.removeItem("guest_user");
         setUser(null);
-        setActiveSession(false); // Oturum pasif olarak işaretleniyor
+        setActiveSession(false); 
+        setGuestActive(false);
       } else {
         console.error("Failed to decrypt token");
       }
@@ -237,6 +248,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const loadUser = async () => {
+      const guestUser = localStorage.getItem("guest_user");
+      if (guestUser) {
+        const parsedGuest = JSON.parse(guestUser);
+        setUser(parsedGuest);
+        setGuestActive(true);
+        setIsLoading(false);
+        return;
+      }
+
       const encryptedToken = localStorage.getItem("encrypted_token");
       if (encryptedToken) {
         const token = decryptToken(encryptedToken);
@@ -261,7 +281,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           logout();
         }
       }
-      setIsLoading(false); // Load işlemi tamamlandığında
+      setIsLoading(false);
     };
 
     loadUser();
@@ -269,7 +289,16 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, activeSession, isLoading, login, register, logout }}
+      value={{
+        user,
+        activeSession,
+        isLoading,
+        login,
+        register,
+        logout,
+        loginAsGuest,
+        guestActive,
+      }}
     >
       {children}
     </UserContext.Provider>

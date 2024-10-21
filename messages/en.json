@@ -129,15 +129,19 @@
     "username": "Username",
     "password": "Password",
     "accept": "Accept",
-    "user-agrement": "user agrement",
+    "user-agrement": "user agreement",
     "login-button": "LOGIN",
     "redirect": "Redirecting...",
-    "forgot-username": "Forgot your username ?",
-    "forgot-password": "Forgot your password ?",
+    "forgot-username": "Forgot your username?",
+    "forgot-password": "Forgot your password?",
     "marker": "© 2011 - 2024 OMG CAPITAL ADVISORS GROUP",
     "home": "HOME",
     "register": "REGISTER",
-    "error-message": "Please fill in the missing information!"
+    "error-message": "Please fill in the missing information!",
+    "agreement-error": "You must accept the user agreement.",
+    "login-failed-message": "Login failed! Please check your username or password.",
+    "login-error": "An error occurred during login! Please try again.",
+    "continue-without-signup": "Continue without signing up"
   },
   "RegisterPage": {
     "step": "Step",
@@ -193,6 +197,8 @@
     "not-found-inactive": "No inactive issuance found.",
     "purchase": "Buy",
     "redirect": "Redirecting...",
-    "details": "Details"
+    "details": "Details",
+    "guest-warning": "To buy issuances and proceed with the transaction, please log in.",
+    "welcome-guest": "Welcome, Guest!"
   }
 }

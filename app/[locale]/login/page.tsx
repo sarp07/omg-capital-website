@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Login = () => {
   const t = useTranslations("LoginPage");
-  const { login } = useUser();
+  const { login, loginAsGuest } = useUser();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [agreement, setAgreement] = useState(false); // Checkbox için state
@@ -49,6 +49,11 @@ const Login = () => {
     } finally {
       setLoading(false); // Yüklenme işlemi tamamlandığında loading'i false yap
     }
+  };
+
+  const handleGuestLogin = () => {
+    loginAsGuest();
+    router.push("/profile");
   };
 
   return (
@@ -127,6 +132,9 @@ const Login = () => {
                 className="px-6 py-[5px] rounded-lg text-[13px] font-medium login-btn"
               >
                 {t("login-button")}
+              </button>
+              <button onClick={handleGuestLogin} className="px-6 mx-5 py-[5px] rounded-lg text-[13px] font-medium login-btn">
+                {t("continue-without-signup")}
               </button>
             </div>
             <div className="flex items-center gap-3 mt-4">

@@ -8,6 +8,7 @@ import { useUser } from "@/app/context/UserContext";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
 import { useTranslations } from "next-intl";
+import { AiOutlineWarning } from "react-icons/ai";
 
 // Define the VDMK type
 interface VDMK {
@@ -21,7 +22,7 @@ interface VDMK {
 }
 
 const Profile = () => {
-  const { user, activeSession, isLoading } = useUser();
+  const { user, activeSession, isLoading, guestActive } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Abs-Page");
@@ -30,7 +31,7 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("active");
 
   useEffect(() => {
-    if (!isLoading && !activeSession) {
+    if (!isLoading && !activeSession && !guestActive) {
       router.push("/login");
     }
   }, [isLoading, activeSession, router]);
@@ -91,11 +92,20 @@ const Profile = () => {
 
   return (
     <div className="w-full h-auto min-h-screen flex flex-col">
+      {guestActive && (
+        <div className="bg-yellow-100 text-yellow-800 p-4 flex items-center justify-center gap-2 text-sm font-semibold">
+          <AiOutlineWarning size={20} />
+          <p>{t("guest-warning")}</p>
+        </div>
+      )}
+
       <Container>
         <div className="w-full flex flex-col lg:pt-12 pt-6">
           <div className="title-container">
             <h5 className="text-xl font-semibold">
-              {t("welcome")} {user?.username}
+              {guestActive
+                ? t("welcome-guest")
+                : `${t("welcome")} ${user?.username}`}
             </h5>
           </div>
 

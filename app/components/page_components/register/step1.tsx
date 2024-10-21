@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useState } from "react";
 
 interface Step1Props {
   setName: React.Dispatch<React.SetStateAction<string>>;
@@ -10,6 +10,7 @@ interface Step1Props {
 
 const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail, setGender }) => {
   const t = useTranslations("RegisterPage");
+
 
   return (
     <>
@@ -40,7 +41,7 @@ const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail, setGender 
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
+      {/* <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
         <h5 className="text-[13px] font-medium pl-[2px]">{t("gender")}</h5>
         <select
           name="gender"
@@ -54,7 +55,7 @@ const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail, setGender 
           <option value="male">{t("male")}</option>
           <option value="female">{t("female")}</option>
         </select>
-      </div>
+      </div> */}
     </>
   );
 };
