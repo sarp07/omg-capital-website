@@ -6,9 +6,9 @@ const ContactPage = () => {
   const t = useTranslations("Contact-Us-Page");
 
   return (
-    <div className="w-full h-auto contact-page flex flex-col">
+    <div className="w-full h-auto contact-page flex flex-col pt-[80px]">
       {/* Hero Section */}
-      <div className="slider w-full flex max-h-[500px] pt-[60px] h-full">
+      <div className="slider w-full flex max-h-[500px] h-full">
         <div className="firm-item w-screen max-h-[500px] lg:h-[500px] md:h-[250px] h-[200px] relative">
           <div className="absolute left-0 top-0 bg-[#0000007a] w-full h-full z-[20]"></div>
           <div className="hero-bigger-container h-full w-full">

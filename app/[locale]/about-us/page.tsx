@@ -5,7 +5,7 @@ import React from "react";
 const AboutUs = () => {
   const t = useTranslations("About-Us-Page");
   return (
-    <div className="w-full h-auto team flex flex-col">
+    <div className="w-full h-auto team flex flex-col pt-[80px]">
       <div className="slider w-full flex max-h-[500px] h-full">
         <div className="about-item w-screen max-h-[500px] lg:h-[500px] md:h-[250px] h-[200px] relative">
           <div className="absolute left-0 top-0 bg-[#0000007a] w-full h-full z-[20]"></div>

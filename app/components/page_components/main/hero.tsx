@@ -8,7 +8,7 @@ const Hero = () => {
 
   return (
     <div className="slider w-full flex max-h-[650px] h-full">
-      <div className="slider-item w-screen max-h-[650px] mt-[80px] h-full relative">
+      <div className="slider-item w-screen max-h-[650px] pt-[80px] h-full relative">
         <div className="absolute left-0 top-0 bg-[#000000be] w-full h-full z-[20] "></div>
 
         <div className="hero-bigger-container h-full w-full">
