@@ -93,7 +93,7 @@ const Profile = () => {
   return (
     <div className="w-full h-auto min-h-screen flex flex-col">
       {guestActive && (
-        <div className="bg-yellow-100 text-yellow-800 p-4 flex items-center justify-center gap-2 text-sm font-semibold">
+        <div className="flex bg-yellow-100 mt-[80px] text-yellow-800 p-4 flex items-center justify-center gap-2 text-sm font-semibold">
           <AiOutlineWarning size={20} />
           <p>{t("guest-warning")}</p>
         </div>

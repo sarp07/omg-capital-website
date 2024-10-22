@@ -105,8 +105,8 @@ const News = () => {
   // Eğer veri yoksa gösterilecek mesaj
   if (currentData.length === 0) {
     return (
-      <div className="text-center h-[500px] text-gray-500 mt-10">
-        <div className="tabs-container flex justify-center mt-10">
+      <div className="text-center h-[500px] text-gray-500 pt-[-80px]">
+        <div className="tabs-container flex justify-center pt-[100px]">
           <button
             className={`px-6 py-2 font-medium ${
               activeTab === "latest-news" ? "border-b-2 border-logoRed" : ""
@@ -134,9 +134,9 @@ const News = () => {
   }
 
   return (
-    <div className="w-full h-auto team flex flex-col">
+    <div className="w-full h-auto team  flex flex-col">
       {/* Sekmeler */}
-      <div className="tabs-container flex justify-center mt-10">
+      <div className="tabs-container pt-[60px] flex justify-center mt-10">
         <button
           className={`px-6 py-2 font-medium ${
             activeTab === "latest-news" ? "border-b-2 border-logoRed" : ""
@@ -156,7 +156,7 @@ const News = () => {
       </div>
 
       {/* Haberlerin Gösterimi */}
-      <div className="bigger-container w-full flex flex-col gap-6 lg:my-20 my-12">
+      <div className="bigger-container  w-full flex flex-col gap-6 lg:my-20 my-12">
         <Container>
           <div className="w-full grid lg:grid-cols-2 gap-8">
             {/* En son yayınlanan haber büyük olarak */}

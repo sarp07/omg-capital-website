@@ -14,7 +14,7 @@ const Team = () => {
   const t = useTranslations("Team-Page");
   return (
     <div className="w-full h-auto team flex flex-col">
-      <div className="slider w-full flex max-h-[500px] h-full">
+      <div className="slider w-full flex max-h-[500px] pt-[80px] h-full">
         <div className="team-item w-screen max-h-[500px] lg:h-[500px] md:h-[250px] h-[160px] relative">
           <div className="absolute left-0 top-0 bg-[#0000007a] w-full h-full z-[20]"></div>
           <div className="hero-bigger-container h-full w-full">

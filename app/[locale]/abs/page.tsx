@@ -6,7 +6,7 @@ const Abs = () => {
    const t = useTranslations("VDMK-Page");
 
    return (
-      <div className="w-full h-auto team flex flex-col">
+      <div className="w-full h-auto team flex pt-[70px] flex-col">
          <Container>
             <div className="inside-container w-full h-auto lg:py-12 py-8">
                <div className="what-is-abs w-full flex flex-col lg:mt-6 mt-1">

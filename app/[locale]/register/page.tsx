@@ -11,15 +11,15 @@ import { useRouter } from "next/navigation";
 const InvestmentApplicationPage = () => {
   const router = useRouter();
   const t = useTranslations("RegisterPage");
-  const { register, user } = useUser(); // Register fonksiyonunu kullanıyoruz
+  const { register, isLoading, activeSession, guestActive } = useUser(); // Register fonksiyonunu kullanıyoruz
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
 
   useEffect(() => {
-   if (user) {
-     router.push("/");
-   }
- }, [user, router]);
+    if (!isLoading && !activeSession && !guestActive) {
+      router.push("/login");
+    }
+  }, [isLoading, activeSession, router]);
 
   // Form verileri için state'ler
   const [name, setName] = useState("");

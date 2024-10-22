@@ -73,7 +73,7 @@ const Login = () => {
       )}
       <div className="w-screen h-screen login-gradient overflow-x-hidden overflow-y-hidden text-white flex items-center overflow-hidden relative">
         <div className="absolute bg-[#00000055] z-[200] w-full h-full left-0 top-0"></div>
-        <div className="w-full max-w-[1000px] h-[500px] bg-[#fffffff0] flex flex-col relative z-[200] lg:ml-40 rounded-2xl shadow">
+        <div className="w-full max-w-[1000px] h-[570px] bg-[#fffffff0] flex flex-col relative z-[200] lg:ml-40 rounded-2xl shadow">
           <div className="top w-full flex-1 h-full bg-[#ffffffc0] px-10 flex flex-col pt-8 rounded-t-2xl">
             <div className="image-container w-[150px]">
               <a href="/">
@@ -126,18 +126,22 @@ const Login = () => {
                 </span>
               </h5>
             </div>
-            <div className="button-container mt-5">
+            <div className="button-container py-5 gap-5 mt-5 flex">
               <button
                 onClick={handleSubmit}
                 className="px-6 py-[5px] rounded-lg text-[13px] font-medium login-btn"
               >
                 {t("login-button")}
               </button>
-              <button onClick={handleGuestLogin} className="px-6 mx-5 py-[5px] rounded-lg text-[13px] font-medium login-btn">
+              <button
+                onClick={handleGuestLogin}
+                className="px-6 py-[5px] rounded-lg text-[13px] font-medium login-btn"
+              >
                 {t("continue-without-signup")}
               </button>
             </div>
-            <div className="flex items-center gap-3 mt-4">
+
+            <div className="flex items-center gap-5 mt-4">
               <a
                 href="/forgotusername"
                 className="lg:text-[13px] text-[11px] text-black underline"

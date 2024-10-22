@@ -35,7 +35,7 @@ const Header = ({ locale }: { locale: string }) => {
   }, []);
 
   return (
-    <div className="header-container w-full shadow-md bg-[#F1F1F1] relative">
+    <div className="header-container fixed w-full shadow-md bg-[#F1F1F1] z-[1000]">
       <div
         className={`absolute mobile-menu w-full left-0 top-0 flex bg-[#F1F1F1] pt-24 z-[250] lg:hidden flex-col px-6 ${
           isOpen ? "active" : ""
