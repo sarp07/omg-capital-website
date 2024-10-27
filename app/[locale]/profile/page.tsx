@@ -9,7 +9,7 @@ import Image from "next/image";
 import Logo from "../../images/logo.png";
 import { AiOutlineWarning } from "react-icons/ai";
 import { useTranslations } from "next-intl";
-import PdfModal from "../../components/page_components/modals/pdfModal"; // Import PdfModal component
+import PdfModal from "../../components/page_components/modals/pdfModal";
 
 interface VDMK {
   vdmkTitle: string;
@@ -18,7 +18,7 @@ interface VDMK {
   purchaseUrl: string;
   termsheet: string | null;
   iconUrl: string;
-  isActive: string;
+  isActive: string; // isActive alanı boolean olarak işaretlendi
 }
 
 const Profile = () => {
@@ -30,18 +30,20 @@ const Profile = () => {
   const [vdmks, setVdmks] = useState<VDMK[]>([]);
   const [activeTab, setActiveTab] = useState("active");
   const [showModal, setShowModal] = useState(false);
-  const [pdfFile, setPdfFile] = useState<string | null>(null); // Modal PDF file path
+  const [pdfFile, setPdfFile] = useState<string | null>(null);
 
-  // Open PDF modal function
+  // PDF Modal açma fonksiyonu
   const openPdfModal = (pdf: string) => {
     const relativePath = pdf.split("/files/")[1];
     if (relativePath) {
-      setPdfFile(`http://localhost:5005/files/${relativePath}`);
+      setPdfFile(
+        `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/files/${relativePath}`
+      );
       setShowModal(true);
     }
   };
 
-  // Close modal function
+  // Modalı kapatma fonksiyonu
   const closeModal = () => {
     setShowModal(false);
     setPdfFile(null);
@@ -62,9 +64,10 @@ const Profile = () => {
           { params: { locale } }
         );
 
+        // isActive boolean ise "active"/"inactive" olarak dönüştür
         const updatedVdmks = response.data.map((vdmk: any) => ({
           ...vdmk,
-          isActive: vdmk.isActive ? "active" : "inactive",
+          isActive: vdmk.isActive === "true" ? "active" : "inactive",
         }));
 
         setVdmks(updatedVdmks);
@@ -84,7 +87,7 @@ const Profile = () => {
   );
 
   const sanitizeUrl = (url: string) => {
-    return url?.replace(/^"+|"+$/g, ""); // Removes double quotes at start and end
+    return url?.replace(/^"+|"+$/g, ""); // Başta ve sonda çift tırnakları kaldırır
   };
 
   if (loading) {
@@ -122,7 +125,7 @@ const Profile = () => {
             </h5>
           </div>
 
-          {/* Tab Menu */}
+          {/* Tab Menü */}
           <div className="tabs-container flex justify-center mt-6">
             <button
               className={`px-6 py-2 font-medium ${
@@ -142,7 +145,7 @@ const Profile = () => {
             </button>
           </div>
 
-          {/* Display Data */}
+          {/* Verilerin Gösterimi */}
           <div className="vdmks-container w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 lg:mt-10 mt-6">
             {(activeTab === "active" ? activeIssuances : inactiveIssuances).map(
               (vdmk, index) => (

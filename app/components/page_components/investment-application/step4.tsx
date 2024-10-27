@@ -42,7 +42,7 @@ const Step4: React.FC<Step4Props> = ({
         <p>
           {t("mkk-explanation")}{" "}
           <a
-            href="https://www.example.com/mkk-info"
+            href="https://eyatirimci.mkk.com.tr/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-logoRed underline"
