@@ -27,10 +27,10 @@ const Hero = () => {
               </div>
               <div className="button-container lg:mt-16 mt-8">
                 <a
-                  href="/team"
+                  href="/about-us"
                   className="lg:px-10 lg:py-[10px] px-6 py-[6px] lg:text-lg text-[15px] bg-logoRed rounded-lg text-white border-2 border-logoRed hover:border-white hover:bg-white hover:text-black hover:bg-transparent transition-colors duration-300"
                 >
-                  {t("home-button-name")}
+                  {t("about-omg")}
                 </a>
               </div>
             </div>

@@ -12,20 +12,25 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  
   const messages = await getMessages();
-  
+
   return (
     <html lang="en">
       <head>
         <title>OMG Capital || Official Website</title> {/* Sayfa başlığı */}
-        <meta name="description" content="OMG Capital Investment Sharing Official Website" /> {/* Açıklama */}
+        <meta
+          name="description"
+          content="OMG Capital Investment Sharing Official Website"
+        />{" "}
+        {/* Açıklama */}
         <meta name="keywords" content="Omg Capital" /> {/* Anahtar Kelimeler */}
         <meta name="author" content="OMG Capital" /> {/* Yazar */}
-        <meta name="viewport" content="width=device-width, initial-scale=1" /> {/* Responsive ayar */}
-        
-        {/* Favicon ekleme */}
-        <link rel="icon" type="image/png" href="/logo.png" sizes="32x32" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />{" "}
+        {/* Responsive ayar */}
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>

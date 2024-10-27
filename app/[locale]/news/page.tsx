@@ -5,7 +5,8 @@ import { useEffect, useState } from "react";
 import Container from "@/app/components/common/container";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import EnhancedModal from "../../components/common/enhancedModal"; // Modal bileşeni
+import EnhancedModal from "../../components/common/enhancedModal";
+import PdfModal from "../../components/page_components/modals/pdfModal";
 import { useTranslations } from "next-intl";
 import Logo from "../../images/logo.png";
 
@@ -16,52 +17,68 @@ interface NewsItem {
   link: string;
   image_uri: string;
   content: string;
-  locale: string; // Locale alanını ekledik
+  locale: string;
+  author: string;
 }
 
-const News = () => {
+interface Announcements {
+  id: number;
+  title: string;
+  description: string;
+  date: Date;
+  pdfDocument: string;
+  locale: string;
+  image_uri: string;
+  isActive: boolean;
+}
+
+const NewsPage = () => {
   const t = useTranslations("News-Page");
-  const { locale } = useParams(); // Şu anki dili alıyoruz
+  const { locale } = useParams();
   const [news, setNews] = useState<NewsItem[]>([]);
-  const [pressReleases, setPressReleases] = useState<NewsItem[]>([]);
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null); // Modal için seçili haber
-  const [activeTab, setActiveTab] = useState("latest-news"); // Aktif sekme
-  const [loading, setLoading] = useState(true); // Yüklenme durumu
+  const [pressReleases, setPressReleases] = useState<Announcements[]>([]);
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [selectedAnnouncement, setSelectedAnnouncement] =
+    useState<Announcements | null>(null);
+  const [activeTab, setActiveTab] = useState("latest-news");
+  const [loading, setLoading] = useState(true);
+  const [showPdfModal, setShowPdfModal] = useState(false);
+  const [pdfFile, setPdfFile] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchNews = async () => {
-      setLoading(true); 
+      setLoading(true);
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/news`);
-
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/news`
+        );
         const sortedNews = response.data
           .filter((newsItem: NewsItem) => newsItem.locale === locale)
           .sort((a: NewsItem, b: NewsItem) => Number(b.id) - Number(a.id));
-
         setNews(sortedNews);
       } catch (error) {
         console.error("Haberler alınamadı:", error);
       } finally {
-        setLoading(false); // Yükleme tamamlandığında false yap
+        setLoading(false);
       }
     };
 
     const fetchPressReleases = async () => {
-      setLoading(true); // Yükleme başladığında true yap
+      setLoading(true);
       try {
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/press-release`
         );
-
         const sortedReleases = response.data
-          .filter((release: NewsItem) => release.locale === locale) // Dil filtrelemesi
-          .sort((a: NewsItem, b: NewsItem) => Number(b.id) - Number(a.id));
-
+          .filter((release: Announcements) => release.locale === locale)
+          .sort(
+            (a: Announcements, b: Announcements) => Number(b.id) - Number(a.id)
+          );
         setPressReleases(sortedReleases);
       } catch (error) {
-        console.error("Basın bültenleri alınamadı:", error);
+        console.error("Duyurular alınamadı:", error);
       } finally {
-        setLoading(false); // Yükleme tamamlandığında false yap
+        setLoading(false);
       }
     };
 
@@ -72,18 +89,30 @@ const News = () => {
     }
   }, [locale, activeTab]);
 
-  // Haber açıklamasını kısaltmak için truncate fonksiyonu
   const truncate = (text: string, maxLength: number) => {
-    if (!text) {
-      return ""; // Eğer text undefined veya boşsa, boş string döndür
-    }
-
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
+    if (!text) return "";
+    const words = text.split(" ");
+    return words.length > maxLength
+      ? words.slice(0, maxLength).join(" ") + "..."
       : text;
   };
 
-  // Yüklenme animasyonu
+  const openPdfModal = (pdf: string) => {
+    const relativePath = pdf.split("/files/")[1];
+    if (relativePath) {
+      setPdfFile(`http://localhost:5005/files/${relativePath}`);
+      setShowPdfModal(true);
+    }
+  };
+
+  const openNewsModal = (newsItem: NewsItem) => {
+    setSelectedNews(newsItem);
+  };
+
+  const openAnnouncementModal = (announcement: Announcements) => {
+    setSelectedAnnouncement(announcement);
+  };
+
   if (loading) {
     return (
       <div className="bigger-container relative flex flex-col h-[500px] justify-center items-center aligns-center">
@@ -102,40 +131,8 @@ const News = () => {
 
   const currentData = activeTab === "latest-news" ? news : pressReleases;
 
-  // Eğer veri yoksa gösterilecek mesaj
-  if (currentData.length === 0) {
-    return (
-      <div className="text-center h-[500px] text-gray-500 pt-[-80px]">
-        <div className="tabs-container flex justify-center pt-[100px]">
-          <button
-            className={`px-6 py-2 font-medium ${
-              activeTab === "latest-news" ? "border-b-2 border-logoRed" : ""
-            }`}
-            onClick={() => setActiveTab("latest-news")}
-          >
-            {t("latest-news")}
-          </button>
-          <button
-            className={`px-6 py-2 font-medium ${
-              activeTab === "press-release" ? "border-b-2 border-logoRed" : ""
-            }`}
-            onClick={() => setActiveTab("press-release")}
-          >
-            {t("press-release")}
-          </button>
-        </div>
-        <div className="tabs-container flex justify-center mt-10">
-          {activeTab === "latest-news"
-            ? t("not-found-news")
-            : t("not-found-release")}
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="w-full h-auto team  flex flex-col">
-      {/* Sekmeler */}
+    <div className="w-full h-auto flex flex-col">
       <div className="tabs-container pt-[60px] flex justify-center mt-10">
         <button
           className={`px-6 py-2 font-medium ${
@@ -143,7 +140,7 @@ const News = () => {
           }`}
           onClick={() => setActiveTab("latest-news")}
         >
-          {t("latest-news")}
+          {t("press-release")}
         </button>
         <button
           className={`px-6 py-2 font-medium ${
@@ -151,87 +148,74 @@ const News = () => {
           }`}
           onClick={() => setActiveTab("press-release")}
         >
-          {t("press-release")}
+          {t("announcements")}
         </button>
       </div>
 
-      {/* Haberlerin Gösterimi */}
-      <div className="bigger-container  w-full flex flex-col gap-6 lg:my-20 my-12">
+      <div className="bigger-container w-full flex flex-col gap-6 lg:my-20 my-12">
         <Container>
           <div className="w-full grid lg:grid-cols-2 gap-8">
-            {/* En son yayınlanan haber büyük olarak */}
-            <div className="big-news-item w-full relative lg:col-span-2 bg-[#f7f7f7] shadow-md rounded-lg p-4">
-              <a
-                className="news-item h-[800px] w-full flex flex-col relative"
-                onClick={() => setSelectedNews(currentData[0])}
-              >
-                <div className="w-full h-[600px] relative overflow-hidden rounded-lg mb-4">
-                  <Image
-                    src={currentData[0].image_uri}
-                    alt="news-img"
-                    className="object-cover w-full h-full"
-                    width={600}
-                    height={800}
-                  />
-                </div>
-                <div className="text-container">
-                  <h5 className="text-[24px] text-gray-500 font-bold">
-                    {currentData[0].title}
-                  </h5>
-                  <p className="text-[14px] text-gray-500 mt-2">
-                    {currentData[0].date}
-                  </p>
-                  <p className="text-[16px] text-gray-500 font-medium mt-2">
-                    {truncate(currentData[0].content, 150)}
-                  </p>
-                </div>
-              </a>
-            </div>
-
-            {/* Diğer haberler */}
-            {currentData.slice(1).map((item, index) => (
+            {currentData.map((item, index) => (
               <div
                 key={index}
-                className="small-news-item bg-[#f7f7f7] shadow-md rounded-lg p-4"
+                className="small-news-item bg-[#f7f7f7] shadow-md rounded-lg p-4 flex flex-col"
               >
-                <a
-                  className="news-item h-[500px] w-full flex flex-col relative"
-                  onClick={() => setSelectedNews(item)}
-                >
-                  <div className="w-full h-[60%] relative overflow-hidden rounded-lg mb-4">
-                    <Image
-                      src={item.image_uri}
-                      alt="news-img"
-                      className="object-cover w-full h-full"
-                      width={400}
-                      height={300}
-                    />
-                  </div>
-                  <div className="text-container">
-                    <h5 className="text-[18px] text-gray-500 font-bold">
-                      {item.title}
-                    </h5>
-                    <p className="text-[12px] text-gray-500 mt-1">
-                      {item.date}
-                    </p>
-                    <p className="text-[14px] text-gray-500 font-medium mt-1">
-                      {truncate(item.content, 80)}
-                    </p>
-                  </div>
-                </a>
+                <div className="flex justify-center mb-4">
+                  <Image
+                    src={item.image_uri || Logo}
+                    alt="news-img"
+                    className="rounded w-full h-[200px] object-cover"
+                    width={400}
+                    height={300}
+                  />
+                </div>
+                <h5 className="text-[18px] text-gray-700 font-semibold mb-2">
+                  {item.title}
+                </h5>
+                <p className="text-[14px] text-gray-600 mb-2">
+                  {activeTab === "latest-news"
+                    ? truncate((item as NewsItem).content, 50)
+                    : truncate((item as Announcements).description, 50)}
+                </p>
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-[12px] text-gray-500">
+                    {new Date(item.date).toLocaleDateString()}
+                  </span>
+                  {activeTab === "latest-news" ? (
+                    <button
+                      onClick={() => openNewsModal(item as NewsItem)}
+                      className="text-blue-500 text-sm hover:underline"
+                    >
+                      {t("details")}
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        openPdfModal((item as Announcements).pdfDocument)
+                      }
+                      className="text-blue-500 text-sm hover:underline"
+                    >
+                      {t("details")}
+                    </button>
+                  )}
+                </div>
               </div>
             ))}
           </div>
         </Container>
       </div>
 
-      {/* Modal - Haber Detayı */}
+      {showPdfModal && pdfFile && (
+        <PdfModal pdfFile={pdfFile} onClose={() => setShowPdfModal(false)} />
+      )}
+
       {selectedNews && (
         <EnhancedModal
           onClose={() => setSelectedNews(null)}
           title={selectedNews.title}
           description={selectedNews.content}
-          date={selectedNews.date}
+          date={new Date(selectedNews.date).toLocaleDateString()}
+          author={selectedNews.author}
           image={selectedNews.image_uri}
           link={selectedNews.link}
         />
@@ -240,4 +224,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default NewsPage;

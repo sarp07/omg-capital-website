@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { FaTimes } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 interface EnhancedModalProps {
   onClose: () => void;
@@ -8,6 +10,7 @@ interface EnhancedModalProps {
   date: string;
   image: string;
   link: string;
+  author?: string;
 }
 
 const EnhancedModal: React.FC<EnhancedModalProps> = ({
@@ -17,6 +20,7 @@ const EnhancedModal: React.FC<EnhancedModalProps> = ({
   date,
   image,
   link,
+  author,
 }) => {
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
@@ -24,57 +28,60 @@ const EnhancedModal: React.FC<EnhancedModalProps> = ({
     }
   };
 
+  const t = useTranslations("News-Page");
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-60 z-[500] flex items-center justify-center backdrop-blur-md transition-all duration-300"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-lg shadow-xl w-[90%] lg:w-3/4 xl:w-2/3 max-h-[80vh] relative overflow-hidden transform transition-transform duration-500 ease-in-out hover:scale-105">
+      <div className="bg-white mt-20 rounded-xl shadow-2xl w-[90%] lg:w-3/4 xl:w-2/3 max-h-[90vh] overflow-hidden relative">
         <button
-          className="absolute top-3 right-5 text-red-600 hover:text-gray-800 text-3xl focus:outline-none"
+          className="absolute top-5 right-5 text-red-500 hover:text-red-700 text-3xl focus:outline-none z-10"
           onClick={onClose}
         >
-          &#10005; {/* X işareti */}
+          <FaTimes color="red" size={24} />
         </button>
 
-        {/* İçerik Alanı */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
-          {/* Resim Alanı */}
-          <div className="relative overflow-hidden rounded-l-lg">
+        {/* Resim Alanı */}
+        <div className="relative overflow-hidden bg-gradient-to-t from-gray-100 to-gray-200 flex items-center justify-center">
+          <div className="w-3/4 py-6">
             <Image
               src={image}
               alt="news-modal-image"
               layout="responsive"
-              width={700}
-              height={400}
+              width={500}
+              height={250}
               objectFit="cover"
-              className="transition-transform duration-300 ease-in-out transform hover:scale-105"
+              className="rounded-lg"
             />
-            <p className="absolute bottom-4 left-4 text-sm text-gray-200 bg-black bg-opacity-50 px-2 py-1 rounded">
-              {new Date(date).toLocaleDateString()}
-            </p>
           </div>
-
-          {/* İçerik Alanı */}
-          <div className="p-6 flex flex-col justify-between">
-            <div>
-              <h2 className="text-4xl font-semibold text-gray-900 tracking-wide leading-snug">
-                {title}
-              </h2>
-              <p className="mt-4 text-gray-700 text-lg leading-relaxed">
-                {description}
-              </p>
-            </div>
-
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 cursor-pointer bg-gradient-to-r from-red-500 to-red-600 text-white py-2 px-4 rounded-lg shadow-lg hover:from-red-600 hover:to-red-700 hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-center"
-            >
-              Haberin Kaynağına Git
-            </a>
+          <div className="absolute bottom-4 left-4 bg-black bg-opacity-60 text-white text-xs font-medium py-1 px-3 rounded-full">
+            {date}
           </div>
+        </div>
+
+        {/* İçerik Alanı */}
+        <div className="p-8 lg:py-10 lg:px-12 flex flex-col space-y-4 overflow-y-auto max-h-[50vh]">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 leading-tight mb-3">
+              {title}
+            </h2>
+            <p className="text-gray-600 text-sm mb-4">{description}</p>
+            {author && (
+              <div className="text-gray-500 text-sm font-semibold mt-2">
+                <p>Yazar: {author}</p>
+              </div>
+            )}
+          </div>
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block cursor-pointer mt-8 py-2 px-6 w-full md:w-1/2 mb-10 text-white font-semibold rounded-lg bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg hover:shadow-xl hover:from-blue-600 hover:to-blue-800 transition-all duration-300 text-center"
+          >
+            {t("go-button")}
+          </a>
         </div>
       </div>
     </div>

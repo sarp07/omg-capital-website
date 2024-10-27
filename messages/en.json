@@ -2,16 +2,20 @@
   "Navbar": {
     "home": "Home",
     "about-us": "About Us",
+    "about-omg": "About OMG",
     "who-we-are": "About Us",
     "our-firm": "Our Firm",
     "team": "Our Team",
     "news": "News",
     "contact": "Contact Us",
     "vdmk-issuance": "ABS Issuance",
-    "whatis-vdmk-issuance": "What is ABS Issuance?",
+    "whatis-vdmk-issuance": "What is ABS?",
     "investor-login": "Investor Login",
     "what-we-do": "What We Do",
-    "logout": "Logout"
+    "logout": "Logout",
+    "what-is-an-abs": "What is an Asset Backed Security (ABS)?",
+    "how-does-work-abs": "How does ABS Work?",
+    "how-to-buy-abs": "How to buy ABS?"
   },
   "Footer": {
     "navigation": "Navigation",
@@ -27,7 +31,8 @@
   "Hero-Component": {
     "home-header": "Financial Strength, Secure Growth",
     "home-sub-header": "By protecting your financial strength, we build sustainable growth together.",
-    "home-button-name": "Check our Team"
+    "home-button-name": "Check our Team",
+    "about-omg": "About OMG"
   },
   "About-Component": {
     "home-about-header": "About OMG Capital Advisors",
@@ -45,7 +50,7 @@
   },
   "Team-Page": {
     "banner-text": "OUR TEAM",
-    "header": "About OMG Capital Team",
+    "header": "OMG Capital Team",
     "base-description-one": "The OMG Capital Team is composed of highly experienced investment banking professionals with a diverse background in finance, economics, and strategic consulting. With over 20 years of combined experience in local and international markets, the team brings a wealth of expertise in corporate finance, mergers and acquisitions, debt restructuring, and capital raising. Each member is dedicated to delivering exceptional value through a client-centric approach, leveraging deep industry knowledge and strategic insight to provide customized financial solutions that support sustainable growth and long-term success for their clients.",
     "base-description-two": "Their collaborative and dynamic team environment fosters innovative thinking and meticulous execution, ensuring that clients receive the highest standard of service in every engagement. The OMG Capital Team is committed to building strong, lasting relationships with their clients, guiding them through complex financial transactions and strategic decisions with integrity, professionalism, and a focus on achieving optimal outcomes.",
     "person-name-one": "Onur AYDOĞAN",
@@ -77,8 +82,10 @@
     "loading": "Loading...",
     "latest-news": "Latest News",
     "press-release": "Press Release",
+    "announcements": "Announcements",
     "not-found-news": "Not Found News",
-    "not-found-release": "Not Found Press Release"
+    "not-found-release": "Not Found Announcements",
+    "details": "Details"
   },
   "Contact-Us-Page": {
     "contact-us": "CONTACT US",
@@ -186,7 +193,21 @@
 
       "paymentTitle": "Payment to Investors:",
       "payment": "Over time, the fund uses the cash flows from the underlying assets to pay back the investors, including both principal and interest on their ABS investment."
-    }
+    },
+    "sourceInstitution": "Source Institution",
+    "sourceInstitutionText": "The party selling the receivables or assets to the fund.",
+    "assetFund": "Asset Fund",
+    "assetFundText": "The entity that holds the receivables or assets backing the securities.",
+    "borrower": "Borrower",
+    "borrowerText": "The party that owes the debt or loan repayment.",
+    "originator": "Originator",
+    "originatorText": "The institution or party that initiates the loan and sells it to the fund.",
+    "receivableTransferAmount": "Receivable Transfer Amount",
+    "transferToFund": "Transfer to the Fund",
+    "issueAmount": "Issue Amount",
+    "principalPayment": "Principal and Interest Payment",
+    "how-to-buy": "How to Buy?",
+    "how-to-buy-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In..."
   },
   "Abs-Page": {
     "welcome": "Welcome",

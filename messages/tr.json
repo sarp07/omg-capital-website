@@ -2,6 +2,7 @@
   "Navbar": {
     "home": "Anasayfa",
     "about-us": "Hakkımızda",
+    "about-omg": "OMG Hakkında",
     "who-we-are": "Hakkımızda",
     "our-firm": "Firmamız",
     "team": "Ekibimiz",
@@ -9,9 +10,12 @@
     "contact": "Bize Ulaşın",
     "vdmk-issuance": "VDMK Hisseler",
     "investor-login": "Yatırımcı Giriş",
-    "whatis-vdmk-issuance": "VDMK Hisseleri Nedir?",
+    "whatis-vdmk-issuance": "VDMK Nedir?",
     "what-we-do": "Ne Yapıyoruz",
-    "logout": "Çıkış Yap"
+    "logout": "Çıkış Yap",
+    "what-is-an-abs": "Varlığa Dayalı Menkul Kıymet (VDMK) Nedir?",
+    "how-does-work-abs": "VDMK Nasıl Çalışır?",
+    "how-to-buy-abs": "Nasıl ABS Alırım?"
   },
   "Footer": {
     "navigation": "Navigasyon",
@@ -27,7 +31,8 @@
   "Hero-Component": {
     "home-header": "Finansal Güç, Güvenli Büyüme",
     "home-sub-header": "Finansal gücünüzü koruyarak sürdürülebilir büyümeyi birlikte inşa ediyoruz.",
-    "home-button-name": "Ekibimizi İnceleyin"
+    "home-button-name": "Ekibimizi İnceleyin",
+    "about-omg": "OMG Hakkında"
   },
   "About-Component": {
     "home-about-header": "OMG Capital Advisors Hakkında",
@@ -45,7 +50,7 @@
   },
   "Team-Page": {
     "banner-text": "EKİBİMİZ",
-    "header": "OMG Capital Ekibi Hakkında",
+    "header": "OMG Capital Ekibi",
     "base-description-one": "OMG Capital Ekibi, finans, ekonomi ve stratejik danışmanlık alanlarında çeşitli geçmişlere sahip, son derece deneyimli yatırım bankacılığı profesyonellerinden oluşmaktadır. Yerel ve uluslararası pazarlarda 20 yılı aşkın birleşik deneyime sahip olan ekip, kurumsal finans, birleşme ve devralmalar, borç yapılandırma ve sermaye artırımı konularında geniş bir uzmanlık sunmaktadır. Her üye, müşteri odaklı bir yaklaşımla olağanüstü değer sunmaya kendini adamış olup, derin sektör bilgisi ve stratejik içgörüleri kullanarak müşterilerinin sürdürülebilir büyüme ve uzun vadeli başarılarını destekleyen özelleştirilmiş finansal çözümler sağlamaktadır.",
     "base-description-two": "Ekip içindeki işbirlikçi ve dinamik çalışma ortamı, yenilikçi düşünceyi ve titiz uygulamayı teşvik ederek, müşterilerin her etkileşimde en yüksek hizmet standartlarını almalarını sağlar. OMG Capital Ekibi, müşterileriyle güçlü ve kalıcı ilişkiler kurmaya kendini adamış olup, onları karmaşık finansal işlemler ve stratejik kararlar konusunda bütünlük, profesyonellik ve en iyi sonuçlara ulaşma odaklı rehberlik eder.",
     "person-name-one": "Onur AYDOĞAN",
@@ -77,8 +82,10 @@
     "loading": "Yükleniyor...",
     "latest-news": "Son Dakika",
     "press-release": "Basın Bülteni",
+    "announcements": "Duyurular",
     "not-found-news": "Haberler Bulunamadı",
-    "not-found-release": "Basın Bülteni Bulunamadı"
+    "not-found-release": "Duyuru Bulunamadı",
+    "details": "Detaylar"
   },
   "Contact-Us-Page": {
     "contact-us": "İLETİŞİM",
@@ -186,7 +193,22 @@
 
       "paymentTitle": "Yatırımcılara Ödeme:",
       "payment": "Zaman içinde fon, altta yatan varlıklardan elde edilen nakit akışlarını kullanarak yatırımcılara, hem anapara hem de faiz ödemelerini yapar."
-    }
+    },
+    
+    "sourceInstitution": "Kaynak Kuruluş",
+    "sourceInstitutionText": "Alacakları veya varlıkları fona satan taraf.",
+    "assetFund": "Varlık Fonu",
+    "assetFundText": "Menkul kıymetleri destekleyen alacakları veya varlıkları tutan taraf.",
+    "borrower": "Borçlu",
+    "borrowerText": "Borç geri ödemesinden sorumlu taraf.",
+    "originator": "Kaynak Kuruluş",
+    "originatorText": "Kredi veren ve krediyi fona satan kuruluş.",
+    "receivableTransferAmount": "Alacak Devir Tutarı",
+    "transferToFund": "Fon’a Devredilmesi",
+    "issueAmount": "İhraç Tutarı",
+    "principalPayment": "Anapara ve Faiz Ödemesi",
+    "how-to-buy": "Nasıl Alırım?",
+    "how-to-buy-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In..."
   },
   "Abs-Page": {
     "welcome": "Hoş geldiniz",

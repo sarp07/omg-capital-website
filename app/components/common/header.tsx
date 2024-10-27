@@ -17,6 +17,7 @@ const Header = ({ locale }: { locale: string }) => {
   const [CommunityHover, setCommunityHover] = useState(false);
   const [ContactHover, setContactHover] = useState(false);
   const [MobileWhoWeAre, setMobileWhoWeAre] = useState(false);
+  const [AbsHover, setAbsHover] = useState(false);
 
   const t = useTranslations("Navbar");
 
@@ -49,7 +50,7 @@ const Header = ({ locale }: { locale: string }) => {
               className="top w-full flex justify-between cursor-pointer"
               onClick={() => setMobileWhoWeAre(!MobileWhoWeAre)}
             >
-              <h5>{t("who-we-are")}</h5>
+              <h5>{t("about-us")}</h5>
               <IoIosArrowDown className="w-4 h-auto text-[#000000a1]" />
             </div>
             <div
@@ -61,7 +62,10 @@ const Header = ({ locale }: { locale: string }) => {
                 {t("team")}
               </a>
               <a href="/about-us" className="font-medium pl-2 text-[14px]">
-                {t("what-we-do")}
+                {t("about-omg")}
+              </a>
+              <a href="/our-firm" className="font-medium pl-2 text-[14px]">
+                {t("our-firm")}
               </a>
             </div>
           </div>
@@ -180,24 +184,32 @@ const Header = ({ locale }: { locale: string }) => {
             >
               <a href="#">{t("who-we-are")}</a>
               {CommunityHover && (
-                <div className="hoverable-community-menu absolute w-[110px] h-auto -left-1 pt-10 top-0 z-[1000] flex flex-col">
-                  <div className="menu bg-white rounded-lg w-full h-full relative shadow">
+                <div className="hoverable-community-menu absolute w-[110px] h-[165px] -left-1 pt-10 top-0 z-[1000] flex flex-col">
+                  <div className="menu bg-white rounded-lg w-full h-full relative shadow pt-1">
                     <div className="triangle -top-3 left-4 absolute z-[200]"></div>
 
                     <div className="link h-10 w-full flex items-center">
                       <a
-                        href="/team"
-                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-tl-[6px] rounded-tr-[6px] transition-colors duration-300"
+                        href="/about-us"
+                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
-                        <h5 className="text-[13px]">{t("team")}</h5>
+                        <h5 className="text-[13px]">{t("about-omg")}</h5>
                       </a>
                     </div>
                     <div className="link h-10 w-full flex items-center">
                       <a
-                        href="/about-us"
-                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start  transition-colors duration-300"
+                        href="/our-firm"
+                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
-                        <h5 className="text-[13px]">{t("who-we-are")}</h5>
+                        <h5 className="text-[13px]">{t("our-firm")}</h5>
+                      </a>
+                    </div>
+                    <div className="link h-10 w-full flex items-center">
+                      <a
+                        href="/team"
+                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px] transition-colors duration-300"
+                      >
+                        <h5 className="text-[13px]">{t("team")}</h5>
                       </a>
                     </div>
                     {/* <div className="link h-10 w-full flex items-center">
@@ -272,14 +284,53 @@ const Header = ({ locale }: { locale: string }) => {
                 </div>
               )}
             </div>
-            <div className="link">
+            <div
+              className="community relative"
+              onMouseEnter={() => setAbsHover(true)}
+              onMouseLeave={() => setAbsHover(false)}
+            >
+              <a href="#">{t("whatis-vdmk-issuance")}</a>
+              {AbsHover && (
+                <div className="hoverable-community-menu absolute w-[150px] h-[280px] -left-1 pt-10 top-0 z-[1000] flex flex-col">
+                  <div className="menu bg-white rounded-lg w-full h-full relative shadow">
+                    <div className="triangle -top-3 left-4 absolute z-[200]"></div>
+
+                    <div className="link h-20 w-full flex items-center">
+                      <a
+                        href="/abs#what-is-abs"
+                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
+                      >
+                        <h5 className="text-[13px]">{t("what-is-an-abs")}</h5>
+                      </a>
+                    </div>
+                    <div className="link h-20 w-full flex items-center">
+                      <a
+                        href="/abs#how-abs-works"
+                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
+                      >
+                        <h5 className="text-[13px]">{t("how-does-work-abs")}</h5>
+                      </a>
+                    </div>
+                    <div className="link h-20 w-full flex items-center">
+                      <a
+                        href="/abs#how-abs-buy"
+                        className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[5px] pl-3 justify-start rounded-[6px] transition-colors duration-300"
+                      >
+                        <h5 className="text-[13px]">{t("how-to-buy-abs")}</h5>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            {/* <div className="link">
               <a
                 href="/abs"
                 className="w-full h-full hover:text-logoRed font-semibold"
               >
                 {t("whatis-vdmk-issuance")}
               </a>
-            </div>
+            </div> */}
             {/* <div className="link -mr-2">
                      <a
                         href="/investment-application"
