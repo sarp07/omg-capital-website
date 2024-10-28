@@ -99,7 +99,7 @@ const LatestNews = () => {
                   <div className="absolute w-full h-[106px] bg-[#00000082] left-0 bottom-0 flex flex-col py-1 px-4 text-white justify-start gap-[2px] z-[200]">
                     <div className="w-full flex justify-between items-center">
                       <h5 className="text-[19px] font-bold">{news.title}</h5>
-                      <h5 className="text-[12px]">{news.date}</h5>
+                      <h5 className="text-[12px]">{new Date(news.date).toLocaleDateString()}</h5>
                     </div>
                     <p className="text-[14px] font-medium truncate">
                       {news.description}
