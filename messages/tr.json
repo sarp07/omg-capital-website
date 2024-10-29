@@ -194,7 +194,7 @@
       "paymentTitle": "Yatırımcılara Ödeme:",
       "payment": "Zaman içinde fon, altta yatan varlıklardan elde edilen nakit akışlarını kullanarak yatırımcılara, hem anapara hem de faiz ödemelerini yapar."
     },
-    
+
     "sourceInstitution": "Kaynak Kuruluş",
     "sourceInstitutionText": "Alacakları veya varlıkları fona satan taraf.",
     "assetFund": "Varlık Fonu",
@@ -221,6 +221,7 @@
     "redirect": "Yönlendiriliyor...",
     "details": "Detaylar",
     "welcome-guest": "Hoşgeldiniz, Misafir!",
-    "guest-warning": "İhraçları satın almak ve işleme devam etmek için lütfen giriş yapınız."
+    "guest-warning": "İhraçları satın almak ve işleme devam etmek için lütfen",
+    "login-link-text": "giriş yapın"
   }
 }

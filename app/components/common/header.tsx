@@ -17,6 +17,7 @@ const Header = ({ locale }: { locale: string }) => {
   const [CommunityHover, setCommunityHover] = useState(false);
   const [ContactHover, setContactHover] = useState(false);
   const [MobileWhoWeAre, setMobileWhoWeAre] = useState(false);
+  const [vdmkIssuance, setVdmkIssuance] = useState(false);
   const [AbsHover, setAbsHover] = useState(false);
 
   const t = useTranslations("Navbar");
@@ -58,15 +59,15 @@ const Header = ({ locale }: { locale: string }) => {
                 MobileWhoWeAre ? "flex" : "hidden"
               }`}
             >
-              <a href="/team" className="font-medium pl-2 text-[14px]">
-                {t("team")}
-              </a>
               <a href="/about-us" className="font-medium pl-2 text-[14px]">
                 {t("about-omg")}
               </a>
-              <a href="/our-firm" className="font-medium pl-2 text-[14px]">
-                {t("our-firm")}
+              <a href="/team" className="font-medium pl-2 text-[14px]">
+                {t("team")}
               </a>
+              {/* <a href="/our-firm" className="font-medium pl-2 text-[14px]">
+                {t("our-firm")}
+              </a> */}
             </div>
           </div>
           {/* <div className="line w-full h-[1px] bg-[#0000000a]"></div>
@@ -74,7 +75,34 @@ const Header = ({ locale }: { locale: string }) => {
           <div className="line w-full h-[1px] bg-[#0000000a]"></div>
           <a href="/news">{t("news")}</a>
           <div className="line w-full h-[1px] bg-[#0000000a] mb-1"></div>
-          <a href="/abs">{t("whatis-vdmk-issuance")}</a>
+          {/* <a href="/abs">{t("whatis-vdmk-issuance")}</a> */}
+          <div className="who-are-we">
+            <div
+              className="top w-full flex justify-between cursor-pointer"
+              onClick={() => setVdmkIssuance(!vdmkIssuance)}
+            >
+              <h5>{t("whatis-vdmk-issuance")}</h5>
+              <IoIosArrowDown className="w-4 h-auto text-[#000000a1]" />
+            </div>
+            <div
+              className={`bottom mt-2  flex-col gap-2  ${
+                vdmkIssuance ? "flex" : "hidden"
+              }`}
+            >
+              <a href="/abs#" className="font-medium pl-2 text-[14px]">
+                {t("whatis-vdmk-issuance")}
+              </a>
+              <a href="/abs#" className="font-medium pl-2 text-[14px]">
+                {t("how-does-work-abs")}
+              </a>
+              <a href="/abs#" className="font-medium pl-2 text-[14px]">
+                {t("how-to-buy-abs")}
+              </a>
+              {/* <a href="/our-firm" className="font-medium pl-2 text-[14px]">
+                {t("our-firm")}
+              </a> */}
+            </div>
+          </div>
           {/* {!activeSession && !isLoading ? (
             <>
               <div className="link mt-6">
@@ -111,7 +139,7 @@ const Header = ({ locale }: { locale: string }) => {
           ) : (
             <>
               <div className="line w-full h-[1px] bg-[#0000000a] mb-1"></div>
-              <a href="/profile">{t("vdmk-issuance")}</a>
+              <a href="/abs-page">{t("vdmk-issuance")}</a>
               <div className="link mt-6 cursor-pointer" onClick={handleLogout}>
                 <button className="w-full h-full px-6 py-2 bg-logoRed rounded-sm hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold">
                   {isLoading ? (
@@ -184,7 +212,7 @@ const Header = ({ locale }: { locale: string }) => {
             >
               <a href="#">{t("who-we-are")}</a>
               {CommunityHover && (
-                <div className="hoverable-community-menu absolute w-[110px] h-[165px] -left-1 pt-10 top-0 z-[1000] flex flex-col">
+                <div className="hoverable-community-menu absolute w-[110px] h-[125px] -left-1 pt-10 top-0 z-[1000] flex flex-col">
                   <div className="menu bg-white rounded-lg w-full h-full relative shadow pt-1">
                     <div className="triangle -top-3 left-4 absolute z-[200]"></div>
 
@@ -196,14 +224,14 @@ const Header = ({ locale }: { locale: string }) => {
                         <h5 className="text-[13px]">{t("about-omg")}</h5>
                       </a>
                     </div>
-                    <div className="link h-10 w-full flex items-center">
+                    {/* <div className="link h-10 w-full flex items-center">
                       <a
                         href="/our-firm"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">{t("our-firm")}</h5>
                       </a>
-                    </div>
+                    </div> */}
                     <div className="link h-10 w-full flex items-center">
                       <a
                         href="/team"
@@ -308,7 +336,9 @@ const Header = ({ locale }: { locale: string }) => {
                         href="/abs#how-abs-works"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
-                        <h5 className="text-[13px]">{t("how-does-work-abs")}</h5>
+                        <h5 className="text-[13px]">
+                          {t("how-does-work-abs")}
+                        </h5>
                       </a>
                     </div>
                     <div className="link h-20 w-full flex items-center">
@@ -374,7 +404,7 @@ const Header = ({ locale }: { locale: string }) => {
               <>
                 <div className="link">
                   <a
-                    href="/login"
+                    href="/abs-page"
                     className="w-full h-full px-6 py-2 bg-logoRed rounded-md hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold text-[14px]"
                   >
                     {t("investor-login")}
@@ -391,7 +421,7 @@ const Header = ({ locale }: { locale: string }) => {
               <>
                 <div className="link">
                   <a
-                    href="/profile"
+                    href="/abs-page"
                     className="w-full h-full hover:text-logoRed font-semibold"
                   >
                     {t("vdmk-issuance")}

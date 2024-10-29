@@ -219,7 +219,8 @@
     "purchase": "Buy",
     "redirect": "Redirecting...",
     "details": "Details",
-    "guest-warning": "To buy issuances and proceed with the transaction, please log in.",
+    "guest-warning": "To buy issuances and proceed with the transaction, please",
+    "login-link-text": "log in",
     "welcome-guest": "Welcome, Guest!"
   }
 }

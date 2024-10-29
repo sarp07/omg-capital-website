@@ -18,11 +18,11 @@ interface VDMK {
   purchaseUrl: string;
   termsheet: string | null;
   iconUrl: string;
-  isActive: string; // isActive alanı boolean olarak işaretlendi
+  isActive: string;
 }
 
 const Profile = () => {
-  const { user, activeSession, isLoading, guestActive } = useUser();
+  const { user, activeSession, isLoading } = useUser();
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const t = useTranslations("Abs-Page");
@@ -31,8 +31,8 @@ const Profile = () => {
   const [activeTab, setActiveTab] = useState("active");
   const [showModal, setShowModal] = useState(false);
   const [pdfFile, setPdfFile] = useState<string | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  // PDF Modal açma fonksiyonu
   const openPdfModal = (pdf: string) => {
     const relativePath = pdf.split("/files/")[1];
     if (relativePath) {
@@ -43,17 +43,10 @@ const Profile = () => {
     }
   };
 
-  // Modalı kapatma fonksiyonu
   const closeModal = () => {
     setShowModal(false);
     setPdfFile(null);
   };
-
-  useEffect(() => {
-    if (!isLoading && !activeSession && !guestActive) {
-      router.push("/login");
-    }
-  }, [isLoading, activeSession, guestActive, router]);
 
   useEffect(() => {
     const fetchVdmks = async () => {
@@ -64,7 +57,6 @@ const Profile = () => {
           { params: { locale } }
         );
 
-        // isActive boolean ise "active"/"inactive" olarak dönüştür
         const updatedVdmks = response.data.map((vdmk: any) => ({
           ...vdmk,
           isActive: vdmk.isActive === "true" ? "active" : "inactive",
@@ -87,45 +79,32 @@ const Profile = () => {
   );
 
   const sanitizeUrl = (url: string) => {
-    return url?.replace(/^"+|"+$/g, ""); // Başta ve sonda çift tırnakları kaldırır
+    return url?.replace(/^"+|"+$/g, "");
   };
 
-  if (loading) {
-    return (
-      <div className="bigger-container relative flex flex-col h-[500px] justify-center items-center aligns-center">
-        <div className="relative duration-500 flex justify-center items-center">
-          <div className="w-[100px] h-[100px] rounded-full border-t-4 border-b-4 border-logoGray animate-spin-slow"></div>
-          <div className="absolute">
-            <Image src={Logo} alt="omg-logo" className="w-[70px] h-auto" />
-          </div>
-        </div>
-        <div className="flex mt-6 text-logoGray">
-          <p>{t("loading")}</p>
-        </div>
-      </div>
-    );
-  }
+  const handlePurchaseClick = (e: React.MouseEvent) => {
+    if (!user || !activeSession) {
+      e.preventDefault();
+      setShowLoginModal(true);
+    }
+  };
 
   return (
-    <div className="w-full h-auto min-h-screen flex flex-col">
-      {guestActive && (
-        <div className="flex bg-yellow-100 mt-[80px] text-yellow-800 p-4 flex items-center justify-center gap-2 text-sm font-semibold">
+    <div className="w-full h-auto min-h-screen flex flex-col py-10 gap-20">
+      {!activeSession && (
+        <div className="fixed w-full flex bg-yellow-100 mt-10 text-yellow-800 p-4 items-center justify-center gap-2 text-sm font-semibold">
           <AiOutlineWarning size={20} />
-          <p>{t("guest-warning")}</p>
+          <p>{t("guest-warning")} </p>
+          <a href="/login" className="text-yellow-600 underline">
+            {t("login-link-text")}
+          </a>
         </div>
       )}
 
       <Container>
-        <div className="w-full flex flex-col lg:pt-12 pt-6">
-          <div className="title-container">
-            <h5 className="text-xl font-semibold">
-              {guestActive
-                ? t("welcome-guest")
-                : `${t("welcome")} ${user?.username}`}
-            </h5>
-          </div>
-
-          {/* Tab Menü */}
+        <div className="w-full flex flex-col lg:pt-12 pt-6 mt-[60px]">
+          
+          {/* Tab Menu */}
           <div className="tabs-container flex justify-center mt-6">
             <button
               className={`px-6 py-2 font-medium ${
@@ -145,7 +124,7 @@ const Profile = () => {
             </button>
           </div>
 
-          {/* Verilerin Gösterimi */}
+          {/* Issuances */}
           <div className="vdmks-container w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 lg:mt-10 mt-6">
             {(activeTab === "active" ? activeIssuances : inactiveIssuances).map(
               (vdmk, index) => (
@@ -185,22 +164,18 @@ const Profile = () => {
                     </button>
                     <a
                       href={
-                        !user || !activeSession || vdmk.isActive === "inactive"
-                          ? undefined
-                          : "/investment-application"
+                        user && activeSession && vdmk.isActive === "active"
+                          ? "/investment-application"
+                          : undefined
                       }
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`${
-                        !user || !activeSession || vdmk.isActive === "inactive"
-                          ? "bg-gray-400 text-gray-300 cursor-not-allowed"
-                          : "bg-logoRed text-white hover:bg-red-700"
+                        user && activeSession && vdmk.isActive === "active"
+                          ? "bg-logoRed text-white hover:bg-red-700"
+                          : "bg-gray-400 text-gray-300 cursor-not-allowed"
                       } py-1 px-3 rounded transition`}
-                      onClick={(e) =>
-                        !user || !activeSession || vdmk.isActive === "inactive"
-                          ? e.preventDefault()
-                          : null
-                      }
+                      onClick={handlePurchaseClick}
                     >
                       {t("purchase")}
                     </a>
@@ -215,6 +190,33 @@ const Profile = () => {
       {/* PDF Modal */}
       {showModal && pdfFile && (
         <PdfModal pdfFile={pdfFile} onClose={closeModal} />
+      )}
+
+      {/* Login Prompt Modal */}
+      {showLoginModal && (
+        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg w-[90%] md:w-[400px] text-center">
+            <AiOutlineWarning size={40} className="text-yellow-600 mb-4" />
+            <h2 className="text-lg font-semibold mb-2 text-gray-800">
+              {t("login-required-title")}
+            </h2>
+            <p className="text-gray-600 mb-4">{t("login-required-message")}</p>
+            <div className="flex gap-4 justify-center">
+              <button
+                className="bg-blue-500 text-white py-1 px-4 rounded"
+                onClick={() => router.push("/login")}
+              >
+                {t("login")}
+              </button>
+              <button
+                className="bg-green-500 text-white py-1 px-4 rounded"
+                onClick={() => router.push("/register")}
+              >
+                {t("register")}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
