@@ -129,7 +129,7 @@ const Header = ({ locale }: { locale: string }) => {
             <>
               <div className="link mt-6">
                 <a
-                  href="/login"
+                  href="/abs-page"
                   className="w-full h-full px-6 py-2 bg-logoRed rounded-sm hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold"
                 >
                   {t("investor-login")}
