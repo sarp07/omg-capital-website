@@ -222,6 +222,10 @@
     "details": "Detaylar",
     "welcome-guest": "Hoşgeldiniz, Misafir!",
     "guest-warning": "İhraçları satın almak ve işleme devam etmek için lütfen",
-    "login-link-text": "giriş yapın"
+    "login-link-text": "giriş yapın",
+    "login-required-title": "Giriş Gereklidir",
+    "login-required-message": "İşleme devam edebilmek için lütfen giriş yapın veya kaydolun.",
+    "login": "Giriş Yap",
+    "register": "Kayıt Ol"
   }
 }

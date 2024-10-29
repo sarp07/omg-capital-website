@@ -100,7 +100,7 @@ const NewsPage = () => {
   const openPdfModal = (pdf: string) => {
     const relativePath = pdf.split("/files/")[1];
     if (relativePath) {
-      setPdfFile(`http://localhost:5005/files/${relativePath}`);
+      setPdfFile(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/files/${relativePath}`);
       setShowPdfModal(true);
     }
   };

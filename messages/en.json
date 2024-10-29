@@ -221,6 +221,10 @@
     "details": "Details",
     "guest-warning": "To buy issuances and proceed with the transaction, please",
     "login-link-text": "log in",
-    "welcome-guest": "Welcome, Guest!"
+    "welcome-guest": "Welcome, Guest!",
+    "login-required-title": "Login Required",
+    "login-required-message": "To proceed with the transaction, please log in or register.",
+    "login": "Login",
+    "register": "Register"
   }
 }

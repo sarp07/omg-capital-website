@@ -103,7 +103,6 @@ const Profile = () => {
 
       <Container>
         <div className="w-full flex flex-col lg:pt-12 pt-6 mt-[60px]">
-          
           {/* Tab Menu */}
           <div className="tabs-container flex justify-center mt-6">
             <button
@@ -192,24 +191,31 @@ const Profile = () => {
         <PdfModal pdfFile={pdfFile} onClose={closeModal} />
       )}
 
-      {/* Login Prompt Modal */}
       {showLoginModal && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg w-[90%] md:w-[400px] text-center">
-            <AiOutlineWarning size={40} className="text-yellow-600 mb-4" />
-            <h2 className="text-lg font-semibold mb-2 text-gray-800">
-              {t("login-required-title")}
-            </h2>
+        <div
+          className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50"
+          onClick={() => setShowLoginModal(false)} // Boş alana tıklanınca modalı kapatır
+        >
+          <div
+            className="bg-white p-6 rounded shadow-lg w-[90%] md:w-[400px] text-center"
+            onClick={(e) => e.stopPropagation()} // Modalın içine tıklanınca kapanmasını engeller
+          >
+            <div className="flex items-center justify-center mb-4">
+              <AiOutlineWarning size={24} className="text-yellow-600 mr-2" />
+              <h2 className="text-lg font-semibold text-gray-800">
+                {t("login-required-title")}
+              </h2>
+            </div>
             <p className="text-gray-600 mb-4">{t("login-required-message")}</p>
             <div className="flex gap-4 justify-center">
               <button
-                className="bg-blue-500 text-white py-1 px-4 rounded"
+                className="bg-logoRed text-white py-1 px-4 rounded"
                 onClick={() => router.push("/login")}
               >
                 {t("login")}
               </button>
               <button
-                className="bg-green-500 text-white py-1 px-4 rounded"
+                className="bg-logoGray text-white py-1 px-4 rounded"
                 onClick={() => router.push("/register")}
               >
                 {t("register")}
