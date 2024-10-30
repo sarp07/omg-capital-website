@@ -38,7 +38,7 @@ const Login = () => {
 
       if (result.success) {
         // Login başarılıysa profile yönlendir
-        router.push("/profile");
+        router.push("/abs-page");
       } else {
         // Login başarısızsa hata mesajı göster
         alert(t("login-failed-message"));
@@ -53,7 +53,7 @@ const Login = () => {
 
   const handleGuestLogin = () => {
     loginAsGuest();
-    router.push("/profile");
+    router.push("/abs-page");
   };
 
   return (
