@@ -225,6 +225,7 @@
     "login-required-title": "Login Required",
     "login-required-message": "To proceed with the transaction, please log in or register.",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "title": "Average Simple Interest Rate: {rate}% / Average Term: {term} Days"
   }
 }

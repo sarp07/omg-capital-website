@@ -7,6 +7,7 @@ import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Logo from "../../images/logo.png";
+import pashaBankLogo from "../../images/logo-pashabank.png";
 import { AiOutlineWarning } from "react-icons/ai";
 import { useTranslations } from "next-intl";
 import PdfModal from "../../components/page_components/modals/pdfModal";
@@ -123,17 +124,17 @@ const Profile = () => {
             </button>
           </div>
 
-          {/* Issuances */}
-          <div className="vdmks-container w-full grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 lg:mt-10 mt-6">
+          {/* Issuances List - Alt Alta Sıralama */}
+          <div className="vdmks-container w-full flex flex-col gap-6 lg:mt-10 mt-6">
             {(activeTab === "active" ? activeIssuances : inactiveIssuances).map(
               (vdmk, index) => (
                 <div
                   key={index}
-                  className="vdmk-item w-full h-[220px] rounded shadow flex flex-col justify-between p-6 cursor-pointer"
+                  className="vdmk-item w-full h-[200px] justify-center rounded py-10 px-20 shadow-lg flex flex-col p-20 cursor-pointer"
                 >
-                  <div className="logos w-full flex justify-between">
+                  <div className="logos w-full flex justify-between mb-3">
                     <Image
-                      src={sanitizeUrl(vdmk.iconUrl) || Logo}
+                      src={pashaBankLogo}
                       className="w-auto h-[32px]"
                       alt="company-logo"
                       width={32}
@@ -145,14 +146,14 @@ const Profile = () => {
                       alt="omg-logo"
                     />
                   </div>
-                  <div className="texts w-full flex flex-col gap-1 flex-1 justify-center">
-                    <h6 className="font-bold text-[18px]">{vdmk.vdmkTitle}</h6>
-                    <p className="text-[16px] font-medium mt-3">
-                      {vdmk.vdmkFaiz}
+                  <div className="texts w-full justify-center items-center flex flex-col gap-2 mb-3 text-center">
+                    <h6 className="font-bold text-lg">{vdmk.vdmkTitle}</h6>
+                    <p className="text-md font-medium text-gray-600">
+                      {t("title", { rate: vdmk.vdmkFaiz, term: vdmk.vdmkVade })}
                     </p>
-                    <p className="text-[16px] font-medium">{vdmk.vdmkVade}</p>
                   </div>
-                  <div className="actions flex justify-between items-center mt-4">
+
+                  <div className="actions flex justify-between items-center">
                     <button
                       onClick={() =>
                         vdmk.termsheet ? openPdfModal(vdmk.termsheet) : null
@@ -164,7 +165,7 @@ const Profile = () => {
                     <a
                       href={
                         user && activeSession && vdmk.isActive === "active"
-                          ? "/investment-application"
+                          ? vdmk.purchaseUrl
                           : undefined
                       }
                       target="_blank"
@@ -194,11 +195,11 @@ const Profile = () => {
       {showLoginModal && (
         <div
           className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50"
-          onClick={() => setShowLoginModal(false)} // Boş alana tıklanınca modalı kapatır
+          onClick={() => setShowLoginModal(false)}
         >
           <div
             className="bg-white p-6 rounded shadow-lg w-[90%] md:w-[400px] text-center"
-            onClick={(e) => e.stopPropagation()} // Modalın içine tıklanınca kapanmasını engeller
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-center mb-4">
               <AiOutlineWarning size={24} className="text-yellow-600 mr-2" />

@@ -226,6 +226,7 @@
     "login-required-title": "Giriş Gereklidir",
     "login-required-message": "İşleme devam edebilmek için lütfen giriş yapın veya kaydolun.",
     "login": "Giriş Yap",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "title": "Ortalama Basit Faiz Oranı: {rate}% / Ortalama Vade: {term} Gün"
   }
 }
