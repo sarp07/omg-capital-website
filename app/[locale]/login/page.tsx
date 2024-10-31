@@ -25,10 +25,6 @@ const Login = () => {
       alert(t("error-message"));
       return;
     }
-    if (!agreement) {
-      alert(t("agreement-error")); // Kullanıcı sözleşmesi onaylanmamışsa uyarı
-      return;
-    }
 
     setLoading(true);
 
@@ -107,25 +103,7 @@ const Login = () => {
                 className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
               />
             </div>
-            <div className="user-agreement flex items-center text-black gap-0 mt-5 pl-1">
-              <label className="check-container relative flex items-center -mt-[3px]">
-                <input
-                  type="checkbox"
-                  checked={agreement}
-                  onChange={() => setAgreement(!agreement)}
-                  required
-                />
-                <span className="checkmark"></span>
-              </label>
-              <h5 className="text-[13px] font-medium pl-[2px] flex items-center gap-1 -ml-3">
-                {t("accept")}{" "}
-                <span>
-                  <div className="underline cursor-pointer">
-                    {t("user-agrement")}
-                  </div>
-                </span>
-              </h5>
-            </div>
+            
             <div className="button-container py-5 gap-5 mt-5 flex">
               <button
                 onClick={handleSubmit}
