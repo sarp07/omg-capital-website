@@ -77,7 +77,7 @@ const InvestmentApplicationPage = () => {
       setLoading(true);
 
       try {
-        await axios.post("http://localhost:5005/api/investors", {
+        await axios.post(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/investors`, {
           name,
           surname,
           birthDate,
