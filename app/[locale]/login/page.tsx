@@ -38,7 +38,7 @@ const Login = () => {
 
       if (result.success) {
         // Login başarılıysa profile yönlendir
-        router.push("/abs-page");
+        router.push("/investment-application");
       } else {
         // Login başarısızsa hata mesajı göster
         alert(t("login-failed-message"));
@@ -47,7 +47,7 @@ const Login = () => {
       console.error("Login failed", error);
       alert(t("login-error")); // Hata durumu
     } finally {
-      setLoading(false); // Yüklenme işlemi tamamlandığında loading'i false yap
+      setLoading(false);
     }
   };
 
