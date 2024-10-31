@@ -16,11 +16,12 @@ const InvestmentApplicationPage = () => {
   const t = useTranslations("Investment-Applications-Page");
   const { user, isLoading, activeSession } = useUser(); // Get logged-in user info
   const [loading, setLoading] = useState(false);
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [step, setStep] = useState(1);
 
   useEffect(() => {
     if (!isLoading && !activeSession) {
-      router.push("/login"); 
+      router.push("/login");
     }
   }, [isLoading, activeSession, router]);
 
@@ -77,26 +78,43 @@ const InvestmentApplicationPage = () => {
       setLoading(true);
 
       try {
-        await axios.post(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/investors`, {
-          name,
-          surname,
-          birthDate,
-          idenfityNumber, // Include identity number in submission
-          phoneNumber,
-          email,
-          city,
-          province,
-          monthlyIncome,
-          profession,
-          mkkRegistrationNumber, // Include MKK Registration number in submission
-          accountNumber, // Include account number in submission
-        });
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/investors`,
+          {
+            name,
+            surname,
+            birthDate: new Date(birthDate),
+            idenfityNumber, // Include identity number in submission
+            phoneNumber,
+            email,
+            city,
+            province,
+            monthlyIncome: Number(monthlyIncome),
+            profession,
+            mkkRegistrationNumber, // Include MKK Registration number in submission
+            accountNumber, // Include account number in submission
+          }
+        );
 
         setTimeout(() => {
           router.push("https://tahvilbonovdmk.pashabank.com.tr/app");
         }, 5000);
-      } catch (error) {
-        console.error("Submission failed:", error);
+      } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
+          const errorMessage = error.response?.status || "";
+
+          if (error.response?.status === 205) {
+            setShowDuplicateModal(true);
+          } else {
+            console.error(
+              "Axios ile ilgili başka bir hata oluştu:",
+              errorMessage
+            );
+            console.error(error);
+          }
+        } else if (error instanceof Error) {
+          console.error("Diğer hata oluştu:", error.message);
+        }
         setLoading(false);
       }
 
@@ -117,7 +135,7 @@ const InvestmentApplicationPage = () => {
             </div>
           </div>
           <div className="flex mt-6 text-logoGray">
-            <p>{t("loading")}</p>
+            <p>{t("redirect")}</p>
           </div>
         </div>
       )}
@@ -200,6 +218,43 @@ const InvestmentApplicationPage = () => {
             </div>
           </div>
         </div>
+        {showDuplicateModal && (
+          <div
+            className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50"
+            onClick={() => setShowDuplicateModal(false)}
+          >
+            <div
+              className="bg-white p-6 rounded shadow-lg w-[90%] md:w-[400px] text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2 className="text-lg font-semibold text-gray-800 mb-4">
+                Zaten Kayıtlısınız!
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Bu e-posta adresi ile zaten bir başvuru yapılmış. İhraçlara
+                bakmaya devam edebilir veya Pasha Bank sayfasına
+                yönlendirilebilirsiniz.
+              </p>
+              <div className="flex gap-4 justify-center">
+                <button
+                  className="bg-logoRed text-white py-1 px-4 rounded"
+                  onClick={() => setShowDuplicateModal(false)}
+                >
+                  İhraçlara Bakmaya Devam Et
+                </button>
+                <button
+                  className="bg-logoGray text-white py-1 px-4 rounded"
+                  onClick={() =>
+                    (window.location.href =
+                      "https://tahvilbonovdmk.pashabank.com.tr")
+                  }
+                >
+                  Pasha Bank'a Git
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

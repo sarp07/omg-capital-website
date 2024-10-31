@@ -27,9 +27,12 @@ const LatestNews = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/news`, {
-          params: { locale },
-        });
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_REACT_TEMPLATE_BACKEND_URL}/api/news`,
+          {
+            params: { locale },
+          }
+        );
 
         // Haberleri ID'ye göre büyükten küçüğe sırala
         const sortedNews = response.data.sort(
@@ -78,9 +81,9 @@ const LatestNews = () => {
           </h5>
           <div className="latest-news-container w-full flex overflow-x-scroll space-x-6 scrollbar-hide">
             {newsItems.length > 0 ? (
-              newsItems.map((news) => (
+              newsItems.map((news, index) => (
                 <div
-                  key={news.id}
+                  key={news.id || index} // Eğer id yoksa index değerini kullanıyoruz
                   className="news min-w-[300px] w-[300px] flex-shrink-0 h-[300px] relative"
                   onClick={() => handleNewsClick(news.id)}
                 >
@@ -92,14 +95,17 @@ const LatestNews = () => {
                       alt={news.title}
                       width={700}
                       height={300}
-                      className="object-cover w-full h-[300px]"
+                      className="object-cover w-full h-auto"
+                      priority
                     />
                   </div>
 
                   <div className="absolute w-full h-[106px] bg-[#00000082] left-0 bottom-0 flex flex-col py-1 px-4 text-white justify-start gap-[2px] z-[200]">
                     <div className="w-full flex justify-between items-center">
                       <h5 className="text-[19px] font-bold">{news.title}</h5>
-                      <h5 className="text-[12px]">{new Date(news.date).toLocaleDateString()}</h5>
+                      <h5 className="text-[12px]">
+                        {new Date(news.date).toLocaleDateString()}
+                      </h5>
                     </div>
                     <p className="text-[14px] font-medium truncate">
                       {news.description}

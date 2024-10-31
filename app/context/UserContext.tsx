@@ -34,7 +34,6 @@ interface UserContextType {
     name: string,
     surname: string,
     email: string,
-    gender: string,
     username: string,
     password: string
   ) => Promise<void>;
@@ -105,7 +104,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     name: string,
     surname: string,
     email: string,
-    gender: string,
     username: string,
     password: string
   ) => {
@@ -116,7 +114,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           name,
           surname,
           email,
-          gender,
           username,
           password,
         }
@@ -125,12 +122,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       if (response.status === 201) {
         console.log("Kayıt başarıyla tamamlandı:", response.data.message);
       } else {
-        console.error("Kayıt sırasında bir sorun oluştu:", response.data);
+        console.error("Kayıt sırasında bir sorun oluştu:", response);
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         if (error.response) {
-          console.error("Kayıt başarısız:", error.response.data.message);
+          console.error("Kayıt başarısız:", error);
         } else {
           console.error("Axios error occurred:", error.message);
         }
@@ -215,6 +212,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           },
         }
       );
+
 
       setUser(profileResponse.data);
       setActiveSession(true);

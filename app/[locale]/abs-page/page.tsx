@@ -103,7 +103,7 @@ const Profile = () => {
       )}
 
       <Container>
-        <div className="w-full flex flex-col lg:pt-12 pt-6 mt-[60px]">
+        <div className="w-full flex flex-col items-center lg:pt-12 pt-6 mt-[60px]">
           {/* Tab Menu */}
           <div className="tabs-container flex justify-center mt-6">
             <button
@@ -124,48 +124,48 @@ const Profile = () => {
             </button>
           </div>
 
-          {/* Issuances List - Alt Alta Sıralama */}
-          <div className="vdmks-container w-full flex flex-col gap-6 lg:mt-10 mt-6">
+          {/* Issuances List */}
+          <div className="vdmks-container w-full flex flex-col items-center gap-6 lg:mt-10 mt-6">
             {(activeTab === "active" ? activeIssuances : inactiveIssuances).map(
               (vdmk, index) => (
                 <div
                   key={index}
-                  className="vdmk-item w-full lg:h-[200px] justify-center rounded py-10 px-20 shadow-lg flex flex-col p-20 cursor-pointer"
+                  className="vdmk-item lg:w-[60%] w-[80%] lg:h-[150px] h-[150px] justify-center rounded py-4 px-6 shadow-lg flex flex-col items-center"
                 >
                   <div className="logos w-full flex justify-between mb-3">
                     <Image
                       src={pashaBankLogo}
-                      className="w-auto h-[32px]"
+                      className="w-auto h-[24px]"
                       alt="company-logo"
-                      width={32}
-                      height={32}
+                      width={24}
+                      height={24}
                     />
                     <Image
                       src={Logo}
-                      className="w-auto h-[32px]"
+                      className="w-auto h-[24px]"
                       alt="omg-logo"
                     />
                   </div>
-                  <div className="texts w-full justify-center items-center flex flex-col gap-2 mb-3 text-center">
-                    <h6 className="font-bold text-lg">{vdmk.vdmkTitle}</h6>
-                    <p className="text-md font-medium text-gray-600">
+                  <div className="texts w-full justify-center items-center flex flex-col gap-1 mb-2 text-center">
+                    <h6 className="font-semibold text-md">{vdmk.vdmkTitle}</h6>
+                    <p className="text-sm font-medium text-gray-600">
                       {t("title", { rate: vdmk.vdmkFaiz, term: vdmk.vdmkVade })}
                     </p>
                   </div>
 
-                  <div className="actions flex justify-between items-center">
+                  <div className="actions flex justify-between items-center w-full mt-3">
                     <button
                       onClick={() =>
                         vdmk.termsheet ? openPdfModal(vdmk.termsheet) : null
                       }
-                      className="text-sm text-blue-500 hover:underline"
+                      className="text-xs text-blue-500 hover:underline"
                     >
                       {t("details")}
                     </button>
                     <a
                       href={
                         user && activeSession && vdmk.isActive === "active"
-                          ? vdmk.purchaseUrl
+                          ? "/investment-application"
                           : undefined
                       }
                       target="_blank"

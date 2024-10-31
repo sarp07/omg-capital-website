@@ -129,7 +129,8 @@
     "for-more-info": "daha fazla bilgi için.",
     "mkk-registration-number": "MKK Sicil Numarası",
     "account-number": "Hesap Numarası",
-    "dont-know-mkk-account": "MKK Sicil No ve Hesap No bilmiyorum, bu şekilde devam etmek istiyorum."
+    "dont-know-mkk-account": "MKK Sicil No ve Hesap No bilmiyorum, bu şekilde devam etmek istiyorum.",
+    "loading": "Yükleniyor..."
   },
   "LoginPage": {
     "information": "Lütfen hesabınıza giriş yapın.",

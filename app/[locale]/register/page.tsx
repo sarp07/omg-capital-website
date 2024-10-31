@@ -16,7 +16,7 @@ const InvestmentApplicationPage = () => {
   const [step, setStep] = useState(1);
 
   useEffect(() => {
-    if (!isLoading && !activeSession && !guestActive) {
+    if (!isLoading && activeSession && guestActive) {
       router.push("/login");
     }
   }, [isLoading, activeSession, router]);
@@ -25,7 +25,6 @@ const InvestmentApplicationPage = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("unkown");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -46,7 +45,7 @@ const InvestmentApplicationPage = () => {
 
       try {
         setLoading(true);
-        await register(name, surname, email, gender, username, password);
+        await register(name, surname, email, username, password);
 
         setTimeout(() => {
           router.push("/login");
@@ -92,7 +91,6 @@ const InvestmentApplicationPage = () => {
                 setName={setName}
                 setSurname={setSurname}
                 setEmail={setEmail}
-                setGender={setGender}
               />
             )}
             {step === 2 && (

@@ -17,19 +17,14 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>OMG Capital || Official Website</title> {/* Sayfa başlığı */}
+        <title>OMG Capital || Official Website</title>
         <meta
           name="description"
           content="OMG Capital Investment Sharing Official Website"
-        />{" "}
-        {/* Açıklama */}
-        <meta name="keywords" content="Omg Capital" /> {/* Anahtar Kelimeler */}
-        <meta name="author" content="OMG Capital" /> {/* Yazar */}
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />{" "}
-        {/* Responsive ayar */}
+        />
+        <meta name="keywords" content="Omg Capital" />
+        <meta name="author" content="OMG Capital" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
       <body>

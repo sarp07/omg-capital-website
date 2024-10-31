@@ -192,6 +192,7 @@ const Header = ({ locale }: { locale: string }) => {
               <Image
                 src={Logo}
                 alt="omg-logo"
+                priority
                 className="lg:h-[48px] h-[48px] -mt-[3px] w-auto relatize z-[500]"
               />
             </a>

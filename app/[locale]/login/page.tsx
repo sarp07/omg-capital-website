@@ -34,7 +34,7 @@ const Login = () => {
 
       if (result.success) {
         // Login başarılıysa profile yönlendir
-        router.push("/investment-application");
+        router.push("/abs-page");
       } else {
         // Login başarısızsa hata mesajı göster
         alert(t("login-failed-message"));
@@ -107,7 +107,7 @@ const Login = () => {
             <div className="button-container py-5 gap-5 mt-5 flex">
               <button
                 onClick={handleSubmit}
-                className="px-6 py-[5px] rounded-lg text-[13px] font-medium login-btn"
+                className="px-6 py-[5px] rounded-lg bg-logoRed text-[13px] font-medium"
               >
                 {t("login-button")}
               </button>

@@ -5,10 +5,9 @@ interface Step1Props {
   setName: React.Dispatch<React.SetStateAction<string>>;
   setSurname: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setGender: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail, setGender }) => {
+const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail }) => {
   const t = useTranslations("RegisterPage");
 
 
