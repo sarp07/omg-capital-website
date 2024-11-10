@@ -19,6 +19,7 @@ interface User {
   id: string;
   name: string;
   surname: string;
+  birthDate: string;
   email: string;
   gender: string;
   username: string;
@@ -34,6 +35,7 @@ interface UserContextType {
     name: string,
     surname: string,
     email: string,
+    birthDate: string,
     username: string,
     password: string
   ) => Promise<void>;
@@ -91,6 +93,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       name: "Guest",
       surname: "",
       email: "",
+      birthDate: "",
       gender: "",
       username: "guest_user",
     };
@@ -104,6 +107,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     name: string,
     surname: string,
     email: string,
+    birthDate: string,
     username: string,
     password: string
   ) => {
@@ -114,6 +118,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           name,
           surname,
           email,
+          birthDate,
           username,
           password,
         }
@@ -268,6 +273,12 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
                 },
               }
             );
+
+            const userData = response.data;
+            if (userData.birthDate) {
+              userData.birthDate = new Date(userData.birthDate).toISOString().split("T")[0];
+            }
+
             setUser(response.data);
             setActiveSession(true);
           } catch (error) {

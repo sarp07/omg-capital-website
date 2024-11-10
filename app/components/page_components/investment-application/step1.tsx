@@ -29,10 +29,13 @@ const Step1: React.FC<Step1Props> = ({
   useEffect(() => {
     if (isUserLoggedIn) {
       // Kullanıcı giriş yaptıysa, bu alanları pasif yap.
+      const storedBirthDate = birthDate && new Date(birthDate).toISOString().split("T")[0];
+
       setName(name);
       setSurname(surname);
+      setBirthDate(storedBirthDate || "");
     }
-  }, [isUserLoggedIn, setName, setSurname, name, surname]);
+  }, [isUserLoggedIn, setName, setSurname, setBirthDate, name, surname, birthDate]);
 
   return (
     <>
@@ -72,6 +75,7 @@ const Step1: React.FC<Step1Props> = ({
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
+          disabled={isUserLoggedIn}
         />
       </div>
 

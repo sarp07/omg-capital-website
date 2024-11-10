@@ -5,7 +5,7 @@ import Image from "next/image";
 import Step1 from "../../components/page_components/investment-application/step1";
 import Step2 from "../../components/page_components/investment-application/step2";
 import Step3 from "../../components/page_components/investment-application/step3";
-import Step4 from "../../components/page_components/investment-application/step4"; // Step4 for MKK and Account No
+import Step4 from "../../components/page_components/investment-application/step4"; 
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -14,7 +14,7 @@ import { useUser } from "@/app/context/UserContext";
 const InvestmentApplicationPage = () => {
   const router = useRouter();
   const t = useTranslations("Investment-Applications-Page");
-  const { user, isLoading, activeSession } = useUser(); // Get logged-in user info
+  const { user, isLoading, activeSession } = useUser(); 
   const [loading, setLoading] = useState(false);
   const [showDuplicateModal, setShowDuplicateModal] = useState(false);
   const [step, setStep] = useState(1);
@@ -25,25 +25,24 @@ const InvestmentApplicationPage = () => {
     }
   }, [isLoading, activeSession, router]);
 
-  // Input values for each step
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [birthDate, setBirthDate] = useState("");
-  const [idenfityNumber, setIdenfityNumber] = useState(""); // Identity Number
+  const [idenfityNumber, setIdenfityNumber] = useState(""); 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [monthlyIncome, setMonthlyIncome] = useState("");
   const [profession, setProfession] = useState("");
-  const [mkkRegistrationNumber, setMkkRegistrationNumber] = useState(""); // MKK Registration Number
-  const [accountNumber, setAccountNumber] = useState(""); // Account Number
+  const [mkkRegistrationNumber, setMkkRegistrationNumber] = useState(""); 
+  const [accountNumber, setAccountNumber] = useState(""); 
 
-  // Pre-fill user data if logged in
   useEffect(() => {
     if (user) {
       setName(user.name);
       setSurname(user.surname);
+      setBirthDate(user.birthDate);
       setEmail(user.email);
     }
   }, [user]);
@@ -84,15 +83,15 @@ const InvestmentApplicationPage = () => {
             name,
             surname,
             birthDate: new Date(birthDate),
-            idenfityNumber, // Include identity number in submission
+            idenfityNumber, 
             phoneNumber,
             email,
             city,
             province,
             monthlyIncome: Number(monthlyIncome),
             profession,
-            mkkRegistrationNumber, // Include MKK Registration number in submission
-            accountNumber, // Include account number in submission
+            mkkRegistrationNumber, 
+            accountNumber, 
           }
         );
 
@@ -165,9 +164,9 @@ const InvestmentApplicationPage = () => {
                 setSurname={setSurname}
                 birthDate={birthDate}
                 setBirthDate={setBirthDate}
-                idenfityNumber={idenfityNumber} // Added identity number
-                setIdenfityNumber={setIdenfityNumber} // Function to update identity number
-                isUserLoggedIn={!!user} // Pass a flag to disable fields if logged in
+                idenfityNumber={idenfityNumber} 
+                setIdenfityNumber={setIdenfityNumber} 
+                isUserLoggedIn={!!user} 
               />
             )}
             {step === 2 && (
@@ -180,7 +179,7 @@ const InvestmentApplicationPage = () => {
                 setCity={setCity}
                 province={province}
                 setProvince={setProvince}
-                isUserLoggedIn={!!user} // Pass a flag to disable fields if logged in
+                isUserLoggedIn={!!user} 
               />
             )}
             {step === 3 && (
@@ -193,9 +192,9 @@ const InvestmentApplicationPage = () => {
             )}
             {step === 4 && (
               <Step4
-                mkkRegistrationNumber={mkkRegistrationNumber} // MKK Registration Number step
+                mkkRegistrationNumber={mkkRegistrationNumber} 
                 setMkkRegistrationNumber={setMkkRegistrationNumber}
-                accountNumber={accountNumber} // Account Number step
+                accountNumber={accountNumber} 
                 setAccountNumber={setAccountNumber}
               />
             )}

@@ -160,6 +160,7 @@
     "name": "Ad",
     "surname": "Soyad",
     "email": "E-posta",
+    "birthDate": "Doğum Tarihi",
     "gender": "Cinsiyet",
     "select-gender": "Cinsiyetinizi seçin",
     "male": "Erkek",
@@ -209,7 +210,7 @@
     "issueAmount": "İhraç Tutarı",
     "principalPayment": "Anapara ve Faiz Ödemesi",
     "how-to-buy": "Nasıl Alırım?",
-    "how-to-buy-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In..."
+    "how-to-buy-text": "ABS'ye yatırım yapma süreci, yatırımcının bir satın alma talep formu doldurması ve miktarı havale etmesi ile başlar. Onay ve mutabakatın ardından ABS'ler yatırımcıların gözetimine devredilir."
   },
   "Abs-Page": {
     "welcome": "Hoş geldiniz",

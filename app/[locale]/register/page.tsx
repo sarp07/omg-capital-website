@@ -25,6 +25,7 @@ const InvestmentApplicationPage = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -45,7 +46,7 @@ const InvestmentApplicationPage = () => {
 
       try {
         setLoading(true);
-        await register(name, surname, email, username, password);
+        await register(name, surname, email, birthDate, username, password);
 
         setTimeout(() => {
           router.push("/login");
@@ -91,6 +92,7 @@ const InvestmentApplicationPage = () => {
                 setName={setName}
                 setSurname={setSurname}
                 setEmail={setEmail}
+                setBirthDate={setBirthDate}
               />
             )}
             {step === 2 && (

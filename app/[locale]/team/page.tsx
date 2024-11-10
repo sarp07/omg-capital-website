@@ -31,9 +31,9 @@ const Team = () => {
       <div className="team-inside w-full lg:mt-24 mt-12 lg:mb-24 mb-12">
         <Container>
           <div className="w-full flex flex-col">
-            <div className="title-container w-full">
+            {/* <div className="title-container w-full">
               <h5 className="lg:text-4xl text-2xl font-bold">{t("header")}</h5>
-            </div>
+            </div> */}
             <div className="paragraph-container mt-8">
               <p className="lg:text-base text-[14px] lg:font-semibold font-medium">
                 {t("base-description-one")}

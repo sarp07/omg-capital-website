@@ -130,7 +130,7 @@ const Profile = () => {
               (vdmk, index) => (
                 <div
                   key={index}
-                  className="vdmk-item lg:w-[60%] w-[80%] lg:h-[150px] h-[150px] justify-center rounded py-4 px-6 shadow-lg flex flex-col items-center"
+                  className="vdmk-item lg:w-[60%] w-[80%] lg:h-[150px] h-[185px] justify-center rounded py-4 px-6 shadow-lg flex flex-col items-center"
                 >
                   <div className="logos w-full flex justify-between mb-3">
                     <Image

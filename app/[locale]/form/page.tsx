@@ -25,7 +25,6 @@ const Form = () => {
    const [name, setName] = useState("");
    const [surname, setSurname] = useState("");
    const [email, setEmail] = useState("");
-   const [gender, setGender] = useState("");
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
@@ -46,7 +45,7 @@ const Form = () => {
 
          try {
             setLoading(true);
-            await register(name, surname, email, gender, username, password);
+            await register(name, surname, email, username, password);
 
             setTimeout(() => {
                router.push("/login");
@@ -100,7 +99,6 @@ const Form = () => {
                         setName={setName}
                         setSurname={setSurname}
                         setEmail={setEmail}
-                        setGender={setGender}
                      />
                   )}
                   {step === 2 && (

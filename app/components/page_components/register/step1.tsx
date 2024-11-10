@@ -5,9 +5,10 @@ interface Step1Props {
   setName: React.Dispatch<React.SetStateAction<string>>;
   setSurname: React.Dispatch<React.SetStateAction<string>>;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setBirthDate: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail }) => {
+const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail, setBirthDate }) => {
   const t = useTranslations("RegisterPage");
 
 
@@ -38,6 +39,14 @@ const Step1: React.FC<Step1Props> = ({ setName, setSurname, setEmail }) => {
           type="email"
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
+        <h5 className="text-[13px] font-medium pl-[2px]">{t("birthDate")}</h5>
+        <input
+          type="date"
+          className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
+          onChange={(e) => setBirthDate(e.target.value)}
         />
       </div>
       {/* <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">

@@ -159,6 +159,7 @@
     "name": "Name",
     "surname": "Surname",
     "email": "Email",
+    "birthDate": "Birth Date",
     "gender": "Gender",
     "select-gender": "Select your gender",
     "male": "Male",
@@ -207,7 +208,7 @@
     "issueAmount": "Issue Amount",
     "principalPayment": "Principal and Interest Payment",
     "how-to-buy": "How to Buy?",
-    "how-to-buy-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In..."
+    "how-to-buy-text": "The procedure to invest in ABS starts with the investor filling out a request to purchase form and wire the amount. The ABSs get transferred to the investors' custody after confirmation and settlement."
   },
   "Abs-Page": {
     "welcome": "Welcome",
