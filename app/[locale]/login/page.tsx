@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import Logo from "../../images/logo.png";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 const Login = () => {
   const t = useTranslations("LoginPage");
-  const { login, loginAsGuest } = useUser();
+  const { login, loginAsGuest, user } = useUser();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [agreement, setAgreement] = useState(false); // Checkbox için state
@@ -51,6 +51,13 @@ const Login = () => {
     loginAsGuest();
     router.push("/abs-page");
   };
+
+  useEffect(() => {
+    if (user) {
+      router.push("/abs-page");
+    }
+  }, [user, router])
+  
 
   return (
     <>

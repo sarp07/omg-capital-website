@@ -19,6 +19,8 @@ const Header = ({ locale }: { locale: string }) => {
   const [MobileWhoWeAre, setMobileWhoWeAre] = useState(false);
   const [vdmkIssuance, setVdmkIssuance] = useState(false);
   const [AbsHover, setAbsHover] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [mobileProfileMenuOpen, setMobileProfileMenuOpen] = useState(false); 
 
   const t = useTranslations("Navbar");
 
@@ -34,6 +36,8 @@ const Header = ({ locale }: { locale: string }) => {
   useEffect(() => {
     setCommunityHover(false);
     setContactHover(false);
+    setProfileMenuOpen(false);
+    setMobileProfileMenuOpen(false);
   }, []);
 
   return (
@@ -103,28 +107,6 @@ const Header = ({ locale }: { locale: string }) => {
               </a> */}
             </div>
           </div>
-          {/* {!activeSession && !isLoading ? (
-            <>
-              <div className="link mt-6">
-                <a
-                  href="/login"
-                  className="w-full h-full px-6 py-2 bg-logoRed rounded-sm hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold"
-                >
-                  {t("investor-login")}
-                </a>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="line w-full h-[1px] bg-[#0000000a] mb-1"></div>
-              <a href="/profile">{t("vdmk-issuance")}</a>
-              <div className="link mt-6 cursor-pointer" onClick={handleLogout}>
-                <button className="w-full h-full px-6 py-2 bg-logoRed rounded-sm hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold">
-                  {t("logout")}
-                </button>
-              </div>
-            </>
-          )} */}
           {!activeSession && !isLoading ? (
             <>
               <div className="link mt-6">
@@ -138,17 +120,29 @@ const Header = ({ locale }: { locale: string }) => {
             </>
           ) : (
             <>
-              <div className="line w-full h-[1px] bg-[#0000000a] mb-1"></div>
-              <a href="/abs-page">{t("vdmk-issuance")}</a>
-              <div className="link mt-6 cursor-pointer" onClick={handleLogout}>
-                <button className="w-full h-full px-6 py-2 bg-logoRed rounded-sm hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold">
-                  {isLoading ? (
-                    <div className="flex justify-center items-center">
-                      <div className="w-[20px] h-[20px] border-t-4 border-b-4 border-logoRed rounded-full animate-spin"></div>
-                    </div>
-                  ) : null}
-                </button>
+              {/* Kullanıcı Adı ve Mobil Profil Menüsü */}
+              <div
+                className="link mt-6 cursor-pointer flex items-center gap-2"
+                onClick={() => setMobileProfileMenuOpen(!mobileProfileMenuOpen)}
+              >
+                <span className="font-semibold text-logoRed">
+                  {user?.username}
+                </span>
+                <IoIosArrowDown className="text-[#000000a1]" />
               </div>
+              {mobileProfileMenuOpen && (
+                <div className="flex flex-col gap-2 mt-2 pl-4">
+                  <a href="/abs-page" className="font-medium text-logoGray">
+                    Dashboard
+                  </a>
+                  <button
+                    onClick={handleLogout}
+                    className="text-logoGray text-left font-medium"
+                  >
+                    {t("logout")}
+                  </button>
+                </div>
+              )}
             </>
           )}
         </div>
@@ -165,23 +159,6 @@ const Header = ({ locale }: { locale: string }) => {
           <div className="link h-10 flex items-center">
             <a href="/contact-us">{t("contact")}</a>
           </div>
-          {/* <div className="link h-10 flex items-center">
-                  <a
-                     href="#"
-                     className=" text-black hover:text-logoRed w-full h-full flex items-center gap-4 "
-                  >
-                     <FaInstagram className="w-auto h-7 " />
-                  </a>
-               </div>
-               <div className="link h-10  flex items-center">
-                  <a
-                     href="#"
-                     target="_blank"
-                     className=" text-black hover:text-logoRed w-full h-full flex items-center gap-4 "
-                  >
-                     <FaMediumM className="w-auto h-7 " />
-                  </a>
-               </div> */}
         </div>
       </div>
 
@@ -401,7 +378,7 @@ const Header = ({ locale }: { locale: string }) => {
                 </div>
               </>
             )} */}
-            {!activeSession && !isLoading ? (
+            {/* {!activeSession && !isLoading ? (
               <>
                 <div className="link">
                   <a
@@ -437,6 +414,48 @@ const Header = ({ locale }: { locale: string }) => {
                   </button>
                 </div>
               </>
+            )} */}
+            {!activeSession && !isLoading ? (
+              <>
+                <div className="link">
+                  <a
+                    href="/abs-page"
+                    className="w-full h-full px-6 py-2 bg-logoRed rounded-md hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold text-[14px]"
+                  >
+                    {t("investor-login")}
+                  </a>
+                </div>
+              </>
+            ) : isLoading ? (
+              <div className="flex justify-center items-center w-full h-full">
+                <div className="w-[24px] h-[24px] border-t-4 border-b-4 border-logoRed rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              <div
+                className="relative flex items-center gap-2 cursor-pointer"
+                onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+              >
+                <span className="font-semibold text-logoRed">
+                  {user?.username}
+                </span>
+                <IoIosArrowDown className="text-logoGray" />
+                {profileMenuOpen && (
+                  <div className="absolute right-0 top-full mt-2 bg-white shadow-lg rounded-md w-40">
+                    <a
+                      href="/abs-page"
+                      className="block px-4 py-2 text-logoGray hover:bg-gray-100"
+                    >
+                      Dashboard
+                    </a>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-logoGray hover:bg-gray-100"
+                    >
+                      {t("logout")}
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
           </div>
 
