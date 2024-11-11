@@ -23,6 +23,8 @@ interface User {
   email: string;
   gender: string;
   username: string;
+  monthlyIncome: string;
+  profession: string;
 }
 
 interface UserContextType {
@@ -37,7 +39,9 @@ interface UserContextType {
     email: string,
     birthDate: string,
     username: string,
-    password: string
+    password: string,
+    monthlyIncome: string,
+    profession: string,
   ) => Promise<void>;
   logout: () => void;
   loginAsGuest: () => void;
@@ -96,6 +100,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       birthDate: "",
       gender: "",
       username: "guest_user",
+      monthlyIncome: "",
+      profession: ""
     };
     localStorage.setItem("guest_user", JSON.stringify(guestUser));
     setUser(guestUser);
@@ -109,7 +115,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     email: string,
     birthDate: string,
     username: string,
-    password: string
+    password: string,
+    monthlyIncome: string,
+    profession: string
   ) => {
     try {
       const response = await axios.post(
@@ -121,6 +129,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
           birthDate,
           username,
           password,
+          monthlyIncome,
+          profession
         }
       );
 

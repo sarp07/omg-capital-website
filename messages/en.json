@@ -129,7 +129,8 @@
     "for-more-info": "for more information.",
     "mkk-registration-number": "MKK Registration Number",
     "account-number": "Account Number",
-    "dont-know-mkk-account": "I don't know my MKK Registration Number and Account Number, I want to continue without them."
+    "dont-know-mkk-account": "I don't know my MKK Registration Number and Account Number, I want to continue without them.",
+    "organization-name": "Organization Name"
   },
   "LoginPage": {
     "information": "Please log in to your account.",

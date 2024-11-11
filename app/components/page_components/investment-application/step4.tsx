@@ -6,6 +6,8 @@ interface Step4Props {
   setMkkRegistrationNumber: React.Dispatch<React.SetStateAction<string>>;
   accountNumber: string;
   setAccountNumber: React.Dispatch<React.SetStateAction<string>>;
+  organizationName: string;
+  setOrganizationName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Step4: React.FC<Step4Props> = ({
@@ -13,22 +15,24 @@ const Step4: React.FC<Step4Props> = ({
   setMkkRegistrationNumber,
   accountNumber,
   setAccountNumber,
+  organizationName,
+  setOrganizationName,
 }) => {
   const t = useTranslations("Investment-Applications-Page");
 
-  // Radio button state
   const [dontKnowDetails, setDontKnowDetails] = useState(false);
 
-  // Radio button toggle
   const handleRadioToggle = () => {
     setDontKnowDetails(!dontKnowDetails);
 
     if (!dontKnowDetails) {
       setMkkRegistrationNumber("unknown");
       setAccountNumber("unknown");
+      setOrganizationName("unknown");
     } else {
       setMkkRegistrationNumber("");
       setAccountNumber("");
+      setOrganizationName("");
     }
   };
 
@@ -62,7 +66,7 @@ const Step4: React.FC<Step4Props> = ({
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={mkkRegistrationNumber}
           onChange={(e) => setMkkRegistrationNumber(e.target.value)}
-          disabled={dontKnowDetails} // Disabled if the user doesn't know
+          disabled={dontKnowDetails} 
         />
       </div>
 
@@ -75,7 +79,20 @@ const Step4: React.FC<Step4Props> = ({
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={accountNumber}
           onChange={(e) => setAccountNumber(e.target.value)}
-          disabled={dontKnowDetails} // Disabled if the user doesn't know
+          disabled={dontKnowDetails} 
+        />
+      </div>
+
+      <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
+        <h5 className="text-[13px] font-medium pl-[2px]">
+          {t("organization-name")}
+        </h5>
+        <input
+          type="text"
+          className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
+          value={organizationName}
+          onChange={(e) => setOrganizationName(e.target.value)}
+          disabled={dontKnowDetails} 
         />
       </div>
 

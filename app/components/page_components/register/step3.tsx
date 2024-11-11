@@ -1,13 +1,12 @@
 import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
-import { useUser } from "@/app/context/UserContext";
+import { useUser } from "@/app/context/UserContext"; // UserContext'i import ettiğimizden emin olun
 
 interface Step3Props {
   monthlyIncome: string;
   setMonthlyIncome: React.Dispatch<React.SetStateAction<string>>;
   profession: string;
   setProfession: React.Dispatch<React.SetStateAction<string>>;
-  isUserLoggedIn: boolean; // Kullanıcı giriş yapmış mı?
 }
 
 const Step3: React.FC<Step3Props> = ({
@@ -15,14 +14,13 @@ const Step3: React.FC<Step3Props> = ({
   setMonthlyIncome,
   profession,
   setProfession,
-  isUserLoggedIn,
 }) => {
   const t = useTranslations("Investment-Applications-Page");
-  const { user } = useUser();
+  const { user } = useUser(); // UserContext'ten user bilgisini alıyoruz
 
   useEffect(() => {
     if (user) {
-      // Kullanıcı bilgisi varsa monthlyIncome ve profession değerlerini otomatik olarak ayarla
+      // User bilgisi varsa monthlyIncome ve profession değerlerini otomatik olarak ayarla
       if (user.monthlyIncome) {
         setMonthlyIncome(user.monthlyIncome.toString());
       }
@@ -46,7 +44,6 @@ const Step3: React.FC<Step3Props> = ({
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={monthlyIncome}
           onChange={(e) => setMonthlyIncome(e.target.value)}
-          disabled={isUserLoggedIn} // Kullanıcı giriş yaptıysa alanı pasif yap
         />
       </div>
       <div className="input-container flex items-start gap-0 mt-5 text-black flex-col">
@@ -56,7 +53,6 @@ const Step3: React.FC<Step3Props> = ({
           className="w-[200px] h-[28px] rounded-sm outline-none border-2 border-[#cecece] text-black pl-[4px] text-[13px] font-medium"
           value={profession}
           onChange={(e) => setProfession(e.target.value)}
-          disabled={isUserLoggedIn} // Kullanıcı giriş yaptıysa alanı pasif yap
         />
       </div>
     </>

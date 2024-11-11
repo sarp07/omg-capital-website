@@ -37,6 +37,7 @@ const InvestmentApplicationPage = () => {
   const [profession, setProfession] = useState("");
   const [mkkRegistrationNumber, setMkkRegistrationNumber] = useState(""); 
   const [accountNumber, setAccountNumber] = useState(""); 
+  const [organizationName, setOrganizationName] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -70,7 +71,7 @@ const InvestmentApplicationPage = () => {
     }
 
     if (step === 4) {
-      if (!mkkRegistrationNumber || !accountNumber) {
+      if (!mkkRegistrationNumber || !accountNumber || !organizationName) {
         alert(t("error-message"));
         return;
       }
@@ -91,7 +92,8 @@ const InvestmentApplicationPage = () => {
             monthlyIncome: Number(monthlyIncome),
             profession,
             mkkRegistrationNumber, 
-            accountNumber, 
+            accountNumber,
+            organizationName: organizationName || "unkown",
           }
         );
 
@@ -188,6 +190,7 @@ const InvestmentApplicationPage = () => {
                 setMonthlyIncome={setMonthlyIncome}
                 profession={profession}
                 setProfession={setProfession}
+                isUserLoggedIn={!!user}
               />
             )}
             {step === 4 && (
@@ -196,6 +199,8 @@ const InvestmentApplicationPage = () => {
                 setMkkRegistrationNumber={setMkkRegistrationNumber}
                 accountNumber={accountNumber} 
                 setAccountNumber={setAccountNumber}
+                organizationName={organizationName}
+                setOrganizationName={setOrganizationName}
               />
             )}
           </div>
