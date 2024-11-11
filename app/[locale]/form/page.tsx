@@ -29,6 +29,8 @@ const Form = () => {
    const [password, setPassword] = useState("");
    const [birthDate, setBirthDate] = useState("")
    const [confirmPassword, setConfirmPassword] = useState("");
+   const [monthlyIncome, setMonthlyIncome] = useState("");
+   const [profession, setProfession] = useState("");
 
    const handleStep = async () => {
       if (!email && !name && !surname) {
@@ -46,7 +48,7 @@ const Form = () => {
 
          try {
             setLoading(true);
-            await register(name, surname, email, birthDate, username, password);
+            await register(name, surname, email, birthDate, username, password, monthlyIncome, profession);
 
             setTimeout(() => {
                router.push("/login");
