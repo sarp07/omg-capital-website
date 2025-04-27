@@ -46,7 +46,7 @@ const ContactPage = () => {
                 {t("location-description-one")} <br />
                 {t("location-description-two")} <br />
                 {t("location-description-three")} <br />
-                <strong>{t("phone")}:</strong> +90 (212) 123 4567 <br />
+                <strong>{t("phone")}:</strong> +90 (212)705 89 80 <br />
                 <strong>{t("email")}:</strong> info@omgcapital.com
               </p>
             </div>
