@@ -54,7 +54,7 @@ const NewsPage = () => {
         );
         const sortedNews = response.data
           .filter((newsItem: NewsItem) => newsItem.locale === locale)
-          .sort((a: NewsItem, b: NewsItem) => Number(b.id) - Number(a.id));
+          .sort((a: NewsItem, b: NewsItem) => new Date(b.date).getTime() - new Date(a.date).getTime());
         setNews(sortedNews);
       } catch (error) {
         console.error("Haberler alınamadı:", error);
@@ -72,7 +72,7 @@ const NewsPage = () => {
         const sortedReleases = response.data
           .filter((release: Announcements) => release.locale === locale)
           .sort(
-            (a: Announcements, b: Announcements) => Number(b.id) - Number(a.id)
+            (a: Announcements, b: Announcements) => new Date(b.date).getTime() - new Date(a.date).getTime()
           );
         setPressReleases(sortedReleases);
       } catch (error) {
