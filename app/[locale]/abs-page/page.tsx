@@ -20,6 +20,8 @@ interface VDMK {
   termsheet: string | null;
   iconUrl: string;
   isActive: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 const Profile = () => {
@@ -63,7 +65,15 @@ const Profile = () => {
           isActive: vdmk.isActive === "true" ? "active" : "inactive",
         }));
 
-        setVdmks(updatedVdmks);
+        // Tarihe göre sıralama - en son yayınlanan ilk görünecek
+        const sortedVdmks = updatedVdmks.sort((a: any, b: any) => {
+          if (a.createdAt && b.createdAt) {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+          }
+          return 0;
+        });
+
+        setVdmks(sortedVdmks);
       } catch (error) {
         console.error("Veriler alınamadı:", error);
       } finally {
