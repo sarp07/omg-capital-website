@@ -30,8 +30,18 @@ const OurFirm = () => {
               </h5>
             </div>
             <div className="paragraph-container mt-8">
-              <p>
+              <p className="lg:text-base text-[14px] lg:font-semibold font-medium">
                 {t("base-description-one")}
+              </p>
+            </div>
+
+            {/* Vision and Mission Section */}
+            <div className="vision-mission-container mt-12">
+              <h6 className="lg:text-2xl text-xl font-bold mb-4">
+                {t("vision-mission-title")}
+              </h6>
+              <p className="lg:text-base text-[14px] lg:font-semibold font-medium">
+                {t("vision-mission-description")}
               </p>
             </div>
           </div>

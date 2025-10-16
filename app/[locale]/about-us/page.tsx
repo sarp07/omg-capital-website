@@ -39,6 +39,38 @@ const AboutUs = () => {
                 {t("base-description-three")}
               </p>
             </div>
+            
+            {/* Products Section */}
+            <div className="products-container mt-12">
+              <h6 className="lg:text-2xl text-xl font-bold mb-4">
+                {t("products-title")}
+              </h6>
+              <ul className="list-disc list-inside space-y-2 lg:text-base text-[14px] font-medium">
+                {t.raw("products").map((product: string, index: number) => (
+                  <li key={index}>{product}</li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Approach Section */}
+            <div className="approach-container mt-12">
+              <h6 className="lg:text-2xl text-xl font-bold mb-4">
+                {t("approach-title")}
+              </h6>
+              <p className="lg:text-base text-[14px] lg:font-semibold font-medium">
+                {t("approach-description")}
+              </p>
+            </div>
+
+            {/* Vision and Mission Section */}
+            <div className="vision-mission-container mt-12 bg-gray-50 p-6 rounded-lg">
+              <h6 className="lg:text-2xl text-xl font-bold mb-4">
+                {t("vision-mission-title")}
+              </h6>
+              <p className="lg:text-base text-[14px] lg:font-semibold font-medium">
+                {t("vision-mission-description")}
+              </p>
+            </div>
           </div>
         </Container>
       </div>

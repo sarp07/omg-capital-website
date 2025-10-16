@@ -93,9 +93,26 @@ const Abs = () => {
             <Image src={selectedDiagram} alt="ABS Diagram" />
           </div>
 
+          <div id="how-to-invest" className="how-to-invest w-full flex flex-col mt-16 border-b border-gray-300 pb-8">
+            <h5 className="lg:text-2xl text-2xl font-bold">{t("how-to-invest-title")}</h5>
+            <p className="text-[15px] font-medium mt-4">{t("how-to-invest-text")}</p>
+          </div>
+
           <div id="how-abs-buy" className="how-abs-works w-full flex flex-col mt-16 border-b border-gray-300 pb-8">
             <h5 className="lg:text-2xl text-2xl font-bold">{t("how-to-buy")}</h5>
             <p className="text-[15px] font-medium mt-4">{t("how-to-buy-text")}</p>
+          </div>
+
+          {/* Risk Warning Section */}
+          <div id="risk-warning" className="risk-warning w-full flex flex-col mt-16">
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg">
+              <h5 className="lg:text-2xl text-2xl font-bold text-yellow-800 mb-4">
+                {t("risk-warning-title")}
+              </h5>
+              <p className="text-[15px] font-medium text-yellow-700">
+                {t("risk-warning-text")}
+              </p>
+            </div>
           </div>
 
         </div>

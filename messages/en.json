@@ -54,17 +54,17 @@
     "base-description-one": "The OMG Capital Team is composed of highly experienced investment banking professionals with a diverse background in finance, economics, and strategic consulting. With over 20 years of combined experience in local and international markets, the team brings a wealth of expertise in corporate finance, mergers and acquisitions, debt restructuring, and capital raising. Each member is dedicated to delivering exceptional value through a client-centric approach, leveraging deep industry knowledge and strategic insight to provide customized financial solutions that support sustainable growth and long-term success for their clients.",
     "base-description-two": "Their collaborative and dynamic team environment fosters innovative thinking and meticulous execution, ensuring that clients receive the highest standard of service in every engagement. The OMG Capital Team is committed to building strong, lasting relationships with their clients, guiding them through complex financial transactions and strategic decisions with integrity, professionalism, and a focus on achieving optimal outcomes.",
     "person-name-one": "Onur AYDOĞAN",
-    "person-description-one": "Founding Partner and CIO of OMG Capital Advisors. Has managed structured credit transactions at institutions like Wellington Management, Merrill Lynch, and RBS. Developed SME-focused transactions with development finance institutions. Has executed significant structured financial deals across various industries and financial institutions, leading responsible lending-focused DFI agreements.",
+    "person-description-one": "Founding Partner and CIO of OMG Capital Advisors. Has managed structured credit transactions at institutions like Wellington Management, Merrill Lynch, and RBS.",
     "person-name-two": "Umut AYDOĞAN",
-    "person-description-two": "Deputy General Manager of OMG Capital Advisors. Experienced in investment funds, ABS issuances, and financial product development with over 20 years of career experience in various banks and investment institutions. Started his career at Yapı Kredi in 2003 and held important positions at İş Bankası, Halk Emeklilik, and Ünlü&Co.",
+    "person-description-two": "Deputy General Manager of OMG Capital Advisors. Experienced in investment funds, ABS issuances, and financial product development.",
     "person-name-three": "Murat GÜLKAN",
-    "person-description-three": "Managing Partner and CEO of OMG Capital Advisors. Previously held senior roles at Deutsche Bank London and Ünlü & Co. Started his career in capital markets and investment banking in 1993, with experience in defining main strategies, investment procedures, and product development including mutual funds and structured products.",
+    "person-description-three": "Managing Partner and CEO of OMG Capital Advisors. Previously held senior roles at Deutsche Bank London and Ünlü & Co.",
     "person-name-four": "Nebil İLSEVEN",
-    "person-description-four": "Founding Partner of OMG Capital Advisors. Served in senior positions at various national and international banks in commercial banking, corporate banking, and investment banking from 1986-2000; served as Senior Vice President at BDDK from 2001-2004; played an active role in financial restructuring, asset management, and legal affairs. Currently holds board memberships in companies operating in various sectors.",
+    "person-description-four": "Founding Partner of OMG Capital Advisors. Served as Senior Vice President at the Banking Regulation and Supervision Agency (BDDK) and played an active role in financial restructuring.",
     "person-name-five": "Bora ORUÇ",
-    "person-description-five": "Founding Partner of OMG Capital Advisors. Served as Executive Vice President at the Capital Markets Board of Turkey and Chairman of the Central Securities Depository of Turkey A.S. from 2014-2020, and was involved in the G20 Regulatory Cooperation Committee. Expert in the regulation of public companies, financial instruments, and market infrastructures, holds Economics degree from METU and MBA from Cambridge.",
+    "person-description-five": "Founding Partner of OMG Capital Advisors. Served as Vice President at the Capital Markets Board of Turkey and was involved in the G20 Regulatory Cooperation Committee.",
     "person-name-six": "İrem KUT",
-    "person-description-six": "Expert in structured finance, with experience managing portfolios exceeding $300 million. Serves in structured finance and portfolio management areas at OMG Capital Advisors."
+    "person-description-six": "Expert in structured finance, with experience managing portfolios exceeding $300 million."
   },
   "About-Us-Page": {
     "about-us": "ABOUT-US",
@@ -79,7 +79,11 @@
       "Turkish Lira and foreign currency debt instruments",
       "Inventory financing",
       "Islamic financing products"
-    ]
+    ],
+    "approach-title": "Our Core Approach",
+    "approach-description": "OMG aims to develop structures that balance the needs of borrowing institutions with investor expectations, responsibly manage risk, comply fully with regulatory frameworks, and are supported by transparent reporting processes.",
+    "vision-mission-title": "Vision and Mission", 
+    "vision-mission-description": "OMG Capital Advisors aims to contribute to the deepening and sustainability of Turkey's financial markets. The company seeks to add value to the Turkish economy by developing financing structures aligned with corporate governance principles and based on risk-sharing between investors and companies. OMG Capital Advisors plays a significant role in Turkey's financial ecosystem through innovative and tailored financing solutions."
   },
   "Our-Firm-Page": {
     "our-firm": "OUR FIRM",
@@ -190,7 +194,7 @@
     "whatIsAbsText": "Asset-Backed Securities (ABS) are a key financing and investment tool in financial markets. They involve securitizing a company's receivables or assets that generate regular cash flows and offering them to investors. ABS provides companies with financing while offering investors diverse return opportunities.",
 
     "howAbsWorksTitle": "How ABS Works",
-    "howAbsWorksText": "1. Identification of Receivables: A company (the originator) identifies its collectible receivables or assets generating regular cash flows. 2. Securitization: These receivables or assets are transformed into securities in compliance with capital market regulations. 3. Offering to Investors: The securities are sold to investors, providing funds for the company. OMG Capital structures the deal, manages the issuance process, and facilitates investor access.",
+    "howAbsWorksText": "1. Identification of Receivables: A company (the originator) identifies its collectible receivables or assets generating regular cash flows. 2. Securitization: These receivables or assets are transformed into securities in compliance with capital market regulations. 3. Offering to Investors: The securities are sold to investors, providing funds for the company. OMG Capital structures the deal, manages the issuance process, and facilitates investor access. 4. Cash Flow and Returns: Investors receive regular cash flows (interest or principal repayments) from the ABS they purchase.",
     "how-to-invest-title": "How to Invest in ABS?",
     "how-to-invest-text": "As per capital market regulations, ABS are targeted at qualified investors. If you are a qualified investor, you can invest in ABS managed by OMG Capital by following these steps: 1. Investor Access: Access our platform and log in as an investor. 2. Obtain Information: Learn about current and upcoming ABS transactions through our platform. 3. Invest: Use your investment account with a licensed investment firm to purchase your preferred ABS.",
 
@@ -223,7 +227,9 @@
     "issueAmount": "Issue Amount",
     "principalPayment": "Principal and Interest Payment",
     "how-to-buy": "How to Buy?",
-    "how-to-buy-text": "The procedure to invest in ABS starts with qualified investors accessing our platform and obtaining information about transactions. Investors can purchase their preferred ABS using their investment accounts with licensed investment firms. ABS offer investors the opportunity to build a diversified portfolio and access various return opportunities."
+    "how-to-buy-text": "The procedure to invest in ABS starts with qualified investors accessing our platform and obtaining information about transactions. Investors can purchase their preferred ABS using their investment accounts with licensed investment firms.",
+    "risk-warning-title": "Risk Warning",
+    "risk-warning-text": "ABS offer investors the opportunity to build a diversified portfolio and access various return opportunities. However, understanding the risks associated with such investments and seeking expert advice is crucial."
   },
   "Abs-Page": {
     "welcome": "Welcome",

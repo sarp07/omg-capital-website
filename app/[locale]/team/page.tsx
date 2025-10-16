@@ -31,9 +31,9 @@ const Team = () => {
       <div className="team-inside w-full lg:mt-24 mt-12 lg:mb-24 mb-12">
         <Container>
           <div className="w-full flex flex-col">
-            {/* <div className="title-container w-full">
+            <div className="title-container w-full">
               <h5 className="lg:text-4xl text-2xl font-bold">{t("header")}</h5>
-            </div> */}
+            </div>
             <div className="paragraph-container mt-8">
               <p className="lg:text-base text-[14px] lg:font-semibold font-medium">
                 {t("base-description-one")}
@@ -42,37 +42,14 @@ const Team = () => {
                 {t("base-description-two")}
               </p>
             </div>
-            <div className="team-inside-container w-full flex flex-col gap-20 lg:mt-24 mt-12">
-              <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
-                <div className="image-container lg:w-[380px] aspect-square w-full">
-                  <Image
-                    src={OnurAydogan}
-                    alt="onur-aydogan"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-container w-full flex-1 flex flex-col h-full lg:gap-6 gap-5 lg:pt-10 pt-6">
-                  <h5 className="text-3xl font-bold">Onur AYDOĞAN</h5>
-                  <h5 className="lg:text-base text-[15px] text-logoGray">
-                    {t("person-description-one")}
-                  </h5>
-                </div>
-              </div>
-              <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
-                <div className="image-container lg:w-[380px] aspect-square w-full">
-                  <Image
-                    src={UmutAydogan}
-                    alt="umut-aydogan"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-container w-full flex-1 flex flex-col h-full lg:gap-6 gap-5 lg:pt-10 pt-6">
-                  <h5 className="text-3xl font-bold">Umut AYDOĞAN</h5>
-                  <h5 className="lg:text-base text-[15px] text-logoGray">
-                    {t("person-description-two")}
-                  </h5>
-                </div>
-              </div>
+
+            {/* Founding Partners Section */}
+            <div className="founding-partners-section mt-16">
+              <h6 className="lg:text-3xl text-2xl font-bold mb-8 text-logoRed">
+                Kurucu Ortaklar
+              </h6>
+              <div className="team-inside-container w-full flex flex-col gap-20 mt-8">
+              {/* CEO First - Murat Gülkan */}
               <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
                 <div className="image-container lg:w-[380px] aspect-square w-full">
                   <Image
@@ -85,6 +62,22 @@ const Team = () => {
                   <h5 className="text-3xl font-bold">Murat GÜLKAN</h5>
                   <h5 className="lg:text-base text-[15px] text-logoGray">
                     {t("person-description-three")}
+                  </h5>
+                </div>
+              </div>
+              {/* CIO Second - Onur Aydoğan */}
+              <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
+                <div className="image-container lg:w-[380px] aspect-square w-full">
+                  <Image
+                    src={OnurAydogan}
+                    alt="onur-aydogan"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="text-container w-full flex-1 flex flex-col h-full lg:gap-6 gap-5 lg:pt-10 pt-6">
+                  <h5 className="text-3xl font-bold">Onur AYDOĞAN</h5>
+                  <h5 className="lg:text-base text-[15px] text-logoGray">
+                    {t("person-description-one")}
                   </h5>
                 </div>
               </div>
@@ -116,6 +109,46 @@ const Team = () => {
                   <h5 className="lg:text-base text-[15px] text-logoGray">
                     {t("person-description-five")}
                   </h5>
+                </div>
+              </div>
+              </div>
+            </div>
+
+            {/* Executives Section */}
+            <div className="executives-section mt-16">
+              <h6 className="lg:text-3xl text-2xl font-bold mb-8 text-logoRed">
+                Yöneticiler
+              </h6>
+              <div className="team-inside-container w-full flex flex-col gap-20 mt-8">
+                <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
+                  <div className="image-container lg:w-[380px] aspect-square w-full">
+                    <Image
+                      src={UmutAydogan}
+                      alt="umut-aydogan"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-container w-full flex-1 flex flex-col h-full lg:gap-6 gap-5 lg:pt-10 pt-6">
+                    <h5 className="text-3xl font-bold">Umut AYDOĞAN</h5>
+                    <h5 className="lg:text-base text-[15px] text-logoGray">
+                      {t("person-description-two")}
+                    </h5>
+                  </div>
+                </div>
+                <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
+                  <div className="image-container lg:w-[380px] aspect-square w-full bg-gray-200 flex items-center justify-center">
+                    <div className="text-center text-gray-500">
+                      <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <span className="text-2xl font-bold text-gray-600">İK</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-container w-full flex-1 flex flex-col h-full lg:gap-6 gap-5 lg:pt-10 pt-6">
+                    <h5 className="text-3xl font-bold">{t("person-name-six")}</h5>
+                    <h5 className="lg:text-base text-[15px] text-logoGray">
+                      {t("person-description-six")}
+                    </h5>
+                  </div>
                 </div>
               </div>
             </div>
