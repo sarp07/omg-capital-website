@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../../common/container";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const About = () => {
    const t = useTranslations("About-Component")
@@ -29,12 +30,12 @@ const About = () => {
                         </p>
                      </div>
                      <div className="button-container mt-8">
-                        <a
+                        <Link
                            href="/about-us"
                            className="px-8 py-[6px] bg-[#ffffff2e] border-2 border-black text-blackk rounded-md hover:bg-logoRed hover:border-logoRed hover:text-white transition-all duration-300 text-[15px]"
                         >
                            {t("read-more")}
-                        </a>
+                        </Link>
                      </div>
                   </div>
                </div>

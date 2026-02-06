@@ -5,7 +5,7 @@ import { useUser } from "../../context/UserContext";
 import Logo from "../../images/logo.png";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 
 const Login = () => {
   const t = useTranslations("LoginPage");
@@ -72,9 +72,9 @@ const Login = () => {
         <div className="w-full max-w-[1000px] h-[570px] bg-[#fffffff0] flex flex-col relative z-[200] lg:ml-40 rounded-2xl shadow">
           <div className="top w-full flex-1 h-full bg-[#ffffffc0] px-10 flex flex-col pt-8 rounded-t-2xl">
             <div className="image-container w-[150px]">
-              <a href="/">
+              <Link href="/">
                 <Image src={Logo} alt="omg-logo" className="w-[150px] h-auto" />
-              </a>
+              </Link>
             </div>
             <div className="title-container w-full items-center mt-8">
               <h5 className="text-[17px] text-black">{t("information")}</h5>
@@ -120,18 +120,18 @@ const Login = () => {
             </div>
 
             <div className="flex items-center gap-5 mt-4">
-              <a
+              <Link
                 href="/forgotusername"
                 className="lg:text-[13px] text-[11px] text-black underline"
               >
                 {t("forgot-username")}
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/forgotpassword"
                 className="lg:text-[13px] text-[11px] text-black underline"
               >
                 {t("forgot-password")}
-              </a>
+              </Link>
             </div>
           </div>
           <div className="bottom flex lg:flex-row flex-col items-center justify-between w-full h-20 px-10 lg:py-0 py-[10px] text-black">
@@ -140,18 +140,18 @@ const Login = () => {
             </div>
 
             <div className="right flex gap-6">
-              <a
+              <Link
                 href="/"
                 className="hover:bg-black hover:text-white transition-colors duration-300  px-4 py-[6px] bg-logoRed text-white rounded-lg text-[13px]"
               >
                 {t("home")}
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/register"
                 className="hover:bg-black hover:text-white transition-colors duration-300  px-4 py-[6px] bg-logoRed text-white rounded-lg text-[13px]"
               >
                 {t("register")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

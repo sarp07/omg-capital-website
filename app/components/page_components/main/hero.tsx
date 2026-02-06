@@ -1,6 +1,7 @@
 // src/components/common/hero.tsx
 "use client";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import React from "react";
 
 const Hero = () => {
@@ -26,12 +27,12 @@ const Hero = () => {
                 </h5>
               </div>
               <div className="button-container lg:mt-16 mt-8">
-                <a
+                <Link
                   href="/about-us"
                   className="lg:px-10 lg:py-[10px] px-6 py-[6px] lg:text-lg text-[15px] bg-logoRed rounded-lg text-white border-2 border-logoRed hover:border-white hover:bg-white hover:text-black hover:bg-transparent transition-colors duration-300"
                 >
                   {t("about-omg")}
-                </a>
+                </Link>
               </div>
             </div>
           </div>

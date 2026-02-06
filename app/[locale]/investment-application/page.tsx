@@ -7,7 +7,7 @@ import Step2 from "../../components/page_components/investment-application/step2
 import Step3 from "../../components/page_components/investment-application/step3";
 import Step4 from "../../components/page_components/investment-application/step4"; 
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import axios from "axios";
 import { useUser } from "@/app/context/UserContext";
 

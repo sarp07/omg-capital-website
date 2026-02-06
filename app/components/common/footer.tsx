@@ -6,7 +6,7 @@ import Logo from "../../images/logo.png";
 import En from "../../images/langs/eng.png";
 import Tr from "../../images/langs/tr.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { FaLinkedin } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 
@@ -16,7 +16,7 @@ const Footer = ({ locale }: { locale: string }) => {
   const router = useRouter();
 
   const changeLanguage = (newLocale: string) => {
-    router.push(`/${newLocale}`);
+    router.replace("/", { locale: newLocale });
   };
 
   return (
@@ -28,13 +28,13 @@ const Footer = ({ locale }: { locale: string }) => {
               <div className="left flex-1 w-full flex flex-col lg:items-start items-center">
                 <div className="logo-container h-full flex items-center -mt-3">
                   <div className="logo">
-                    <a href="/" className="w-auto">
+                    <Link href="/" className="w-auto">
                       <Image
                         src={Logo}
                         alt="omg-logo"
                         className="lg:h-[100px] w-auto h-[60px]"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -44,36 +44,36 @@ const Footer = ({ locale }: { locale: string }) => {
                     <h5 className="font-bold text-[18px]">{t("navigation")}</h5>
                   </div>
                   <div className="links w-full flex flex-col text-center   gap-[6px]">
-                    <a
+                    <Link
                       href="/about-us"
                       className="text-[15px] hover:text-logoRed transition-colors duration-300"
                     >
                       {t("about-us")}
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="/team"
                       className="text-[15px] hover:text-logoRed transition-colors duration-300"
                     >
                       {t("team")}
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="/our-firm"
                       className="text-[15px] hover:text-logoRed transition-colors duration-300"
                     >
                       {t("our-firm")}
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="/news"
                       className="text-[15px] hover:text-logoRed transition-colors duration-300"
                     >
                       {t("news")}
-                    </a>
-                    <a
+                    </Link>
+                    <Link
                       href="/contact-us"
                       className="text-[15px] hover:text-logoRed transition-colors duration-300"
                     >
                       {t("contact")}
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

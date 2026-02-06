@@ -6,7 +6,7 @@ import Image from "next/image";
 import Step1 from "../../components/page_components/register/step1";
 import Step2 from "../../components/page_components/register/step2";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 const Form = () => {
    const router = useRouter();

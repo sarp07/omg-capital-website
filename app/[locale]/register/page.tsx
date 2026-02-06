@@ -7,7 +7,7 @@ import Step1 from "../../components/page_components/register/step1";
 import Step2 from "../../components/page_components/register/step2";
 import Step3 from "../../components/page_components/register/step3"; // Step3'ü import ediyoruz
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 
 const InvestmentApplicationPage = () => {
   const router = useRouter();

@@ -8,7 +8,7 @@ import { FaLinkedin } from "react-icons/fa6";
 import { useTranslations } from "next-intl";
 import { IoIosArrowDown } from "react-icons/io";
 import { useUser } from "@/app/context/UserContext";
-import { useRouter } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 
 const Header = ({ locale }: { locale: string }) => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const Header = ({ locale }: { locale: string }) => {
   const handleLogout = async () => {
     try {
       await logout();
-      router.push("/");
+      router.push("/"); // next-intl router: mevcut locale ile /
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +48,7 @@ const Header = ({ locale }: { locale: string }) => {
         }`}
       >
         <div className="links w-full flex flex-col gap-2 *:text-black mt-5">
-          <a href="/">{t("home")}</a>
+          <Link href="/">{t("home")}</Link>
           <div className="line w-full h-[1px] bg-[#0000000a] "></div>
           <div className="who-are-we">
             <div
@@ -63,12 +63,12 @@ const Header = ({ locale }: { locale: string }) => {
                 MobileWhoWeAre ? "flex" : "hidden"
               }`}
             >
-              <a href="/about-us" className="font-medium pl-2 text-[14px]">
+              <Link href="/about-us" className="font-medium pl-2 text-[14px]">
                 {t("about-omg")}
-              </a>
-              <a href="/team" className="font-medium pl-2 text-[14px]">
+              </Link>
+              <Link href="/team" className="font-medium pl-2 text-[14px]">
                 {t("team")}
-              </a>
+              </Link>
               {/* <a href="/our-firm" className="font-medium pl-2 text-[14px]">
                 {t("our-firm")}
               </a> */}
@@ -77,7 +77,7 @@ const Header = ({ locale }: { locale: string }) => {
           {/* <div className="line w-full h-[1px] bg-[#0000000a]"></div>
           <a href="/our-firm">{t("our-firm")}</a> */}
           <div className="line w-full h-[1px] bg-[#0000000a]"></div>
-          <a href="/news">{t("news")}</a>
+          <Link href="/news">{t("news")}</Link>
           <div className="line w-full h-[1px] bg-[#0000000a] mb-1"></div>
           {/* <a href="/abs">{t("whatis-vdmk-issuance")}</a> */}
           <div className="who-are-we">
@@ -93,15 +93,15 @@ const Header = ({ locale }: { locale: string }) => {
                 vdmkIssuance ? "flex" : "hidden"
               }`}
             >
-              <a href="/abs#" className="font-medium pl-2 text-[14px]">
+              <Link href="/abs#" className="font-medium pl-2 text-[14px]">
                 {t("whatis-vdmk-issuance")}
-              </a>
-              <a href="/abs#" className="font-medium pl-2 text-[14px]">
+              </Link>
+              <Link href="/abs#" className="font-medium pl-2 text-[14px]">
                 {t("how-does-work-abs")}
-              </a>
-              <a href="/abs#" className="font-medium pl-2 text-[14px]">
+              </Link>
+              <Link href="/abs#" className="font-medium pl-2 text-[14px]">
                 {t("how-to-buy-abs")}
-              </a>
+              </Link>
               {/* <a href="/our-firm" className="font-medium pl-2 text-[14px]">
                 {t("our-firm")}
               </a> */}
@@ -132,12 +132,12 @@ const Header = ({ locale }: { locale: string }) => {
           {!activeSession && !isLoading ? (
             <>
               <div className="link mt-6">
-                <a
+                <Link
                   href="/abs-page"
                   className="w-full h-full px-6 py-2 bg-logoRed rounded-sm hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold"
                 >
                   {t("investor-login")}
-                </a>
+                </Link>
               </div>
             </>
           ) : (
@@ -154,9 +154,9 @@ const Header = ({ locale }: { locale: string }) => {
               </div>
               {mobileProfileMenuOpen && (
                 <div className="flex flex-col gap-2 mt-2 pl-4">
-                  <a href="/abs-page" className="font-medium text-logoGray">
+                  <Link href="/abs-page" className="font-medium text-logoGray">
                     Dashboard
-                  </a>
+                  </Link>
                   <button
                     onClick={handleLogout}
                     className="text-logoGray text-left font-medium"
@@ -179,7 +179,7 @@ const Header = ({ locale }: { locale: string }) => {
             </a>
           </div>
           <div className="link h-10 flex items-center">
-            <a href="/contact-us">{t("contact")}</a>
+            <Link href="/contact-us">{t("contact")}</Link>
           </div>
           {/* <div className="link h-10 flex items-center">
                   <a
@@ -204,23 +204,23 @@ const Header = ({ locale }: { locale: string }) => {
       <div className="w-full max-w-[1350px] mx-auto h-auto flex xl:px-0 px-3">
         <div className="header-inner-container flex w-full lg:h-[80px] h-[78px]  justify-between items-center relative z-[400]">
           <div className="logo-container">
-            <a href="/">
+            <Link href="/">
               <Image
                 src={Logo}
                 alt="omg-logo"
                 priority
                 className="lg:h-[48px] h-[48px] -mt-[3px] w-auto relatize z-[500]"
               />
-            </a>
+            </Link>
           </div>
           <div className="links gap-10 h-full items-center text-[14px] lg:flex hidden">
             <div className="link">
-              <a
+              <Link
                 href="/"
                 className="w-full h-full hover:text-logoRed font-semibold"
               >
                 {t("home")}
-              </a>
+              </Link>
             </div>
             <div
               className="community relative"
@@ -234,12 +234,12 @@ const Header = ({ locale }: { locale: string }) => {
                     <div className="triangle -top-3 left-4 absolute z-[200]"></div>
 
                     <div className="link h-10 w-full flex items-center">
-                      <a
+                      <Link
                         href="/about-us"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">{t("about-omg")}</h5>
-                      </a>
+                      </Link>
                     </div>
                     {/* <div className="link h-10 w-full flex items-center">
                       <a
@@ -250,12 +250,12 @@ const Header = ({ locale }: { locale: string }) => {
                       </a>
                     </div> */}
                     <div className="link h-10 w-full flex items-center">
-                      <a
+                      <Link
                         href="/team"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px] transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">{t("team")}</h5>
-                      </a>
+                      </Link>
                     </div>
                     {/* <div className="link h-10 w-full flex items-center">
                       <a
@@ -270,12 +270,12 @@ const Header = ({ locale }: { locale: string }) => {
               )}
             </div>
             <div className="link">
-              <a
+              <Link
                 href="/news"
                 className="w-full h-full hover:text-logoRed font-semibold"
               >
                 {t("news")}
-              </a>
+              </Link>
             </div>
 
             <div
@@ -300,12 +300,12 @@ const Header = ({ locale }: { locale: string }) => {
                       </a>
                     </div>
                     <div className="link h-10 w-full flex items-center">
-                      <a
+                      <Link
                         href="/contact-us"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3  justify-start rounded-[6px] transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">{t("contact")}</h5>
-                      </a>
+                      </Link>
                     </div>
                     {/* <div className="link h-10 w-full flex items-center">
                                  <a
@@ -341,30 +341,30 @@ const Header = ({ locale }: { locale: string }) => {
                     <div className="triangle -top-3 left-4 absolute z-[200]"></div>
 
                     <div className="link h-20 w-full flex items-center">
-                      <a
+                      <Link
                         href="/abs#what-is-abs"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">{t("what-is-an-abs")}</h5>
-                      </a>
+                      </Link>
                     </div>
                     <div className="link h-20 w-full flex items-center">
-                      <a
+                      <Link
                         href="/abs#how-abs-works"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[10px] pl-3 justify-start rounded-[6px]  transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">
                           {t("how-does-work-abs")}
                         </h5>
-                      </a>
+                      </Link>
                     </div>
                     <div className="link h-20 w-full flex items-center">
-                      <a
+                      <Link
                         href="/abs#how-abs-buy"
                         className="hover:bg-logoRed text-black hover:text-white w-full h-full flex items-center gap-[5px] pl-3 justify-start rounded-[6px] transition-colors duration-300"
                       >
                         <h5 className="text-[13px]">{t("how-to-buy-abs")}</h5>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -457,12 +457,12 @@ const Header = ({ locale }: { locale: string }) => {
             {!activeSession && !isLoading ? (
               <>
                 <div className="link">
-                  <a
+                  <Link
                     href="/abs-page"
                     className="w-full h-full px-6 py-2 bg-logoRed rounded-md hover:bg-black duration-300 transition-colors text-white hover:text-white font-semibold text-[14px]"
                   >
                     {t("investor-login")}
-                  </a>
+                  </Link>
                 </div>
               </>
             ) : isLoading ? (
@@ -480,12 +480,12 @@ const Header = ({ locale }: { locale: string }) => {
                 <IoIosArrowDown className="text-logoGray" />
                 {profileMenuOpen && (
                   <div className="absolute right-0 top-full mt-2 bg-white shadow-lg rounded-md w-40">
-                    <a
+                    <Link
                       href="/abs-page"
                       className="block px-4 py-2 text-logoGray hover:bg-gray-100"
                     >
                       Dashboard
-                    </a>
+                    </Link>
                     <button
                       onClick={handleLogout}
                       className="w-full text-left px-4 py-2 text-logoGray hover:bg-gray-100"

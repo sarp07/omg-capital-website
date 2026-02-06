@@ -3,6 +3,7 @@ import Container from "../../common/container";
 import TeamSquare from "../../../images/team/teamsquare.webp";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 const Team = () => {
    const t = useTranslations("Team-Component");
@@ -37,12 +38,12 @@ const Team = () => {
                      </p>
                   </div>
                   <div className="button-container mt-3">
-                     <a
+                     <Link
                         href="/team"
                         className="px-8 py-[6px] bg-[#ffffff2e] border-2 border-black text-blackk rounded-md hover:bg-logoRed hover:border-logoRed hover:text-white transition-all duration-300 text-[15px]"
                      >
                         {t("read-more")}
-                     </a>
+                     </Link>
                   </div>
                </div>
             </div>

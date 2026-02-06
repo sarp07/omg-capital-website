@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Container from "../../common/container";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Logo from "../../../images/logo.png";
@@ -69,7 +69,7 @@ const LatestNews = () => {
   }, []);
 
   const handleNewsClick = (newsId: string) => {
-    router.push(`/news?newsId=${newsId}`);
+    router.push(`/news?newsId=${newsId}`); // locale korunur
   };
 
   return (

@@ -3,7 +3,8 @@
 import Container from "@/app/components/common/container";
 import React, { useState, useEffect } from "react";
 import { useUser } from "@/app/context/UserContext";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Logo from "../../images/logo.png";
@@ -106,9 +107,9 @@ const Profile = () => {
         <div className="fixed w-full flex bg-yellow-100 mt-10 text-yellow-800 p-4 items-center justify-center gap-2 text-sm font-semibold">
           <AiOutlineWarning size={20} />
           <p>{t("guest-warning")} </p>
-          <a href="/login" className="text-yellow-600 underline">
+          <Link href="/login" className="text-yellow-600 underline">
             {t("login-link-text")}
-          </a>
+          </Link>
         </div>
       )}
 
