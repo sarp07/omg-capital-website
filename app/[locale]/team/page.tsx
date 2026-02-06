@@ -46,7 +46,7 @@ const Team = () => {
             {/* Founding Partners Section */}
             <div className="founding-partners-section mt-16">
               <h6 className="lg:text-3xl text-2xl font-bold mb-8 text-logoRed">
-                Kurucu Ortaklar
+                {t("founding-partners-title")}
               </h6>
               <div className="team-inside-container w-full flex flex-col gap-20 mt-8">
               {/* CEO First - Murat Gülkan */}
