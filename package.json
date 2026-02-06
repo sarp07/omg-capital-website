@@ -15,7 +15,7 @@
     "hamburger-react": "^2.5.1",
     "jwt-decode": "^4.0.0",
     "next": "15.5.12",
-    "next-intl": "^3.20.0",
+    "next-intl": "^3.26.5",
     "pdfjs-dist": "^3.11.174",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
