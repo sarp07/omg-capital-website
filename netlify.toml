@@ -1,3 +1,7 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build --force"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = ".next"
+
+# Next.js SSR/ISR/App Router için gerekli; yoksa sadece .next statik sunulur → 502
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
