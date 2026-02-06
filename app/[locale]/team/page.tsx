@@ -117,7 +117,7 @@ const Team = () => {
             {/* Executives Section */}
             <div className="executives-section mt-16">
               <h6 className="lg:text-3xl text-2xl font-bold mb-8 text-logoRed">
-                Yöneticiler
+                {t("executives-title")}
               </h6>
               <div className="team-inside-container w-full flex flex-col gap-20 mt-8">
                 <div className="team-item-part w-full flex justify-between lg:gap-12 gap-0 lg:flex-row flex-col">
